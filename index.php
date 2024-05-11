@@ -30,10 +30,6 @@
                 <option value="学习空间-好言好句"></option>
                 <option value="学习空间-学习笔记"></option>
                 <option value="学习空间-学习视频"></option>
-                <option value="生活空间-旅游记录"></option>
-                <option value="生活空间-生活视频"></option>
-                <option value="生活空间-校园生活"></option>
-                <option value="生活空间-校园工具箱"></option>
                 <option value="相册空间"></option>
                 <option value="博客空间"></option>
                 <option value="音乐空间"></option>
@@ -68,7 +64,6 @@
                 <ul>
                     <li><a href="index.php">主页</a></li>
                     <li><a href="html/study-main.php">学习空间</a></li>
-                    <li><a href="html/travel.php">生活空间</a></li>
                     <li><a href="html/album.php">相册空间</a></li>
                     <li><a href="html/blog.php">博客空间</a></li>
                     <li><a href="html/music.php">音乐空间</a></li>
@@ -129,20 +124,11 @@
                 <div class="basis">
                     <p id="a">昵称：Jack</p>
                     <p id="a">性别：男</p>
-                    <p id="a">生日：2003年6月18日</p>
+                    <p id="a">年龄：18岁</p>
                     <p id="a">星座：双子座</p>
-                    <p id="a">现居地：未可知也</p>
-                </div>
-
-                <div id="personal">
-                    <a name="two"></a>个人信息
-                </div>
-                <div class="personal">
                     <p id="a">手机：13536627999</p>
                     <p id="a">邮箱：123456789@qq.com</p>
 
-                    <p id="a">Q&nbsp;&nbsp;Q:123456789</p>
-                    <p id="a">学历：小学二年级</p>
                     <p id="a">毕业学校：深造小学</p>
                     
                 </div>
