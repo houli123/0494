@@ -1,23 +1,4 @@
-<?php
-    session_start();
-    if (isset($_SESSION["uname"])){
-    $uname = $_SESSION['uname'];
-    }else{
-    // header("Location:index2.php");
-    }
-    $host = 'localhost'; // 例如 localhost
-    $username = 'root';
-    $password = '123456';
-    $dbname = 'p_s';
-
-    // 创建连接
-    $conn = mysqli_connect($host, $username, $password, $dbname);
-
-    // 检查连接
-    if ($conn->connect_error) {
-        die("连接失败: " . $conn->connect_error);
-    }
-?>
+<!-- 非登录的页面 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,7 +24,7 @@
         <!-- 回到顶部箭头 -->
         <a href="#"><img class="head" src="images/head.png"></a>
         <!-- 搜索框 -->
-        <!-- <div class="search">
+        <div class="search">
             <input list="search" placeholder="查看功能位置" />
             <datalist id="search">
                 <option value="学习空间-学习记录"></option>
@@ -58,7 +39,7 @@
                 <option value="个人中心-更改个人信息"></option>
                 <option value="个人中心-更改密码"></option>
             </datalist>
-        </div> -->
+        </div>
 
         <!-- 点击更换背景图片的设置 -->
         <div id="js">
@@ -104,39 +85,32 @@
 
                 <!-- 信息这里采用php来实现 -->
                 <?php
-                $uname = 'Jack';  //测试用
-                $sql = "SELECT * FROM users where uname='$uname'";
+                $sql = "SELECT uname, sex, gra, xinzuo, phone, email, bio FROM users";
                 $result = mysqli_query($conn,$sql);
-                $row = mysqli_fetch_array($result);
                 ?>
 
                 <!-- 姓名框 -->
                 <div id="name">
-                    <php echo $row['uname']; ?>
-                    <!-- Jack -->
+                    <!-- <php echo $result->uname; ?> -->
+                    Jack
                 </div>
                 <!-- 签名框 -->
                 <div id="signature">
-                    &nbsp;&nbsp;
-                    <!-- <php echo $row->bio; ?> -->
-                    <!-- 我是一个又菜又爱玩电脑的少年，作为计算机专业的学生， -->
-<!-- 我热爱我的专业并为其投入巨大的热情和精力。希望大家能和我一同热爱计算机！ -->
+                    &nbsp;&nbsp;我是一个又菜又爱玩电脑的少年，作为计算机专业的学生，
+我热爱我的专业并为其投入巨大的热情和精力。希望大家能和我一同热爱计算机！
                 </div>
                 <!-- 性别框 -->
                 <div id="sex">
                     <table>
                         <tr>
                             <td>
-                                <!-- <php echo $row->sex; ?> -->
-                                <!-- 男 -->
-                            </td>
-                            <!-- <td> -->
-                                <!-- <php echo $row->age; ?> -->
-                                <!-- 18岁 -->
+                                男
                             </td>
                             <td>
-                                <!-- <php echo $row->age3; ?> -->
-                                <!-- 双子座 -->
+                                18岁
+                            </td>
+                            <td>
+                                双子座
                             </td>
                         </tr>
                     </table>
