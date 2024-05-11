@@ -1,21 +1,19 @@
 <?php
+    include "php/conn.php";
     session_start();
     if (isset($_SESSION["uname"])){
     $uname = $_SESSION['uname'];
+    $pwd = $_SESSION['pwd'];
+    $email = $_SESSION['email'];
+    $email = $_SESSION['phone'];
+    $bio = $_SESSION['bio'];
+    $sex = $_SESSION['sex'];
+    $gra = $_SESSION['gra'];
+    $pic = $_SESSION['pic'];
+    $age = $_SESSION['age'];
     }else{
-    // header("Location:index2.php");
-    }
-    $host = 'localhost'; // 例如 localhost
-    $username = 'root';
-    $password = '123456';
-    $dbname = 'p_s';
-
-    // 创建连接
-    $conn = mysqli_connect($host, $username, $password, $dbname);
-
-    // 检查连接
-    if ($conn->connect_error) {
-        die("连接失败: " . $conn->connect_error);
+    echo "<script>alert('当前未登录，即将进入登陆界面');</script>";
+    // header("Location:html/login.php");
     }
 ?>
 <!DOCTYPE html>
@@ -36,6 +34,7 @@
         #left{
             padding-bottom: 1em;
         }
+        
     </style>
 </head>
 
@@ -105,7 +104,7 @@
 
                 <!-- 信息这里采用php来实现 -->
                 <?php
-                $uname = 'Jack';  //测试用
+                //$uname = 'Jack';  //测试用
                 
                 $sql = "SELECT * FROM users where uname='$uname'";
                 $result = mysqli_query($conn,$sql);
@@ -159,7 +158,7 @@
                     <a name="info">基本资料</a>
                 </div>
                 <div class="basis">
-                    <?php echo "<p id='a'>昵称：".$row['uname']."</p>"; ?>
+                    <?php echo "<p id='a'>用户名：".$row['uname']."</p>"; ?>
                     <?php echo "<p id='a'>性别：" . $row['sex'] . "</p>"; ?>
                     <?php echo "<p id='a'>年龄：" . $row['age'] . "</p>"; ?>
                     <?php echo "<p id='a'>星座：" . $row['xinzuo'] . "</p>"; ?>
@@ -209,4 +208,26 @@
 
     
 </body>
+
 </html>
+
+<script>
+    var goTopBtn = document.getElementById('go-top');
+
+window.addEventListener('scroll', function () {
+    // 当页面滚动到一定位置（例如：200px）时显示按钮，否则隐藏
+    if (window.scrollY > 200) {
+        goTopBtn.style.display = 'block';
+    } else {
+goTopBtn.style.display = 'none';
+            }
+        });
+
+// 为按钮添加点击事件，当点击时页面滚动到顶部
+goTopBtn.addEventListener('click', function () {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth' // 平滑滚动到页面顶部
+    });
+});
+</script>

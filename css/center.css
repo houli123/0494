@@ -46,10 +46,10 @@ vertical-align: top;
 .input_input {
     position: relative;
     display: block;
-    float: right;
+    /* float: right; */
     padding: 0.8em;
     /* width: 60%; */
-    max-width: 100px;
+    min-width: 100px;
     border: none;
     background: #f0f0f0;
     color: #aaa;

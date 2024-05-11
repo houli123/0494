@@ -12,25 +12,21 @@ window.onload = function(){
 
 
 
-// 当页面滚动时执行函数
-window.onscroll = function () {
-    scrollFunction();
-};
+// var goTopBtn = document.getElementById('go-top');
 
-function scrollFunction() {
-    // 获取回到顶部的元素
-    var goTop = document.getElementById("go-top");
+// window.addEventListener('scroll', function () {
+//     // 当页面滚动到一定位置（例如：200px）时显示按钮，否则隐藏
+//     if (window.scrollY > 200) {
+//         goTopBtn.style.display = 'block';
+//     } else {
+// goTopBtn.style.display = 'none';
+//             }
+//         });
 
-    // 当用户下滑100px时显示按钮
-    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-        goTop.style.display = "block";
-    } else {
-        goTop.style.display = "none";
-    }
-}
-
-// 点击按钮时，滚动到页面顶部
-document.getElementById("go-top").addEventListener("click", function () {
-    document.body.scrollTop = 0; // 对于Safari
-    document.documentElement.scrollTop = 0; // 对于Chrome, Firefox, IE和Opera
-});
+// // 为按钮添加点击事件，当点击时页面滚动到顶部
+// goTopBtn.addEventListener('click', function () {
+//     window.scrollTo({
+//         top: 0,
+//         behavior: 'smooth' // 平滑滚动到页面顶部
+//     });
+// });

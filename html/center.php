@@ -1,3 +1,19 @@
+<?php
+include "../php/conn.php";
+
+if (isset($_SESSION["uname"])) {
+    $uname = $_SESSION['uname'];
+} else {
+    echo "<script>alert('当前未登录，即将进入登陆界面');</script>";
+    header("Location:login.php");
+}
+
+if (isset($_SESSION["uname"])) {
+    $uname = $_SESSION['uname'];
+    // header("Location:login.php");
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,7 +64,7 @@
                     
                     <li><a href="album.php">相册空间</a></li>
                     <li><a href="blog.php">博客空间</a></li>
-                    <li><a href="music.php">音乐空间</a></li> 
+                     
                     <li><a href="center.php">个人中心</a></li> 
                 </ul>
             </div>
@@ -63,8 +79,8 @@
                 <div id="nav1">
                     <ul>
                         <li><a href="center.php">更改基本资料</a></li>
-                        <li><a href="center2.php">更改个人信息</a></li>
-                        <li><a href="center3.php">好友留言</a></li>
+                        <li><a href="center2.php">更改个人头像</a></li>
+                        <li><a href="center.php">退出登录</a></li>
                        
                     </ul>
                 </div>
@@ -134,7 +150,7 @@
                         <label class="input_label input_label2" style="float: left;top:0.8em;">
                             现居地：
                         </label>
-                        <select id="provident" style="width: 85px;height: 55px; float:left"><option value="0">选择省</option><option value="34">安徽</option><option value="82">澳门</option><option value="11">北京</option><option value="35">福建</option><option value="62">甘肃</option><option value="44">广东</option><option value="45">广西</option><option value="52">贵州</option><option value="46">海南</option><option value="13">河北</option><option value="41">河南</option><option value="23">黑龙江</option><option value="42">湖北</option><option value="43">湖南</option><option value="22">吉林</option><option value="32">江苏</option><option value="36">江西</option><option value="21">辽宁</option><option value="15">内蒙古</option><option value="64">宁夏</option><option value="63">青海</option><option value="37">山东</option><option value="14">山西</option><option value="61">陕西</option><option value="31">上海</option><option value="51">四川</option><option value="71">台湾</option><option value="12">天津</option><option value="54">西藏</option><option value="81">香港</option><option value="65">新疆</option><option value="53">云南</option><option value="33">浙江</option><option value="50">重庆</option></select>
+                        <select id="provident" style="width: 85px;height: 55px; float:left"><option value="0">选择省</option><option value="34">安徽</option><option value="82">澳门</option><option value="11">北京</option></select>
                         <input class="input_input input_input2" type="text" placeholder="详细地址" style="float: left;">
                     </span>
                 </div>

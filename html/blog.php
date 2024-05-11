@@ -52,7 +52,7 @@
                     
                     <li><a href="album.php">相册空间</a></li>
                     <li><a href="blog.php">博客空间</a></li>
-                    <li><a href="music.php">音乐空间</a></li> 
+                     
                     <li><a href="center.php">个人中心</a></li> 
                 </ul>
             </div>
