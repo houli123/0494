@@ -68,11 +68,24 @@ body{
 
 /* 固定箭头设置 */
 .head{
-    position:fixed;
-    right:-.3%;
-    top:93%;
+    /* position:fixed; */
+    /* right:-.3%; */
+    /* top:93%; */
     width: 5%;
+    /* z-index: 999; */
+}
+#go-top {
+    /* display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
     z-index: 999;
+    width: 50px;
+    height: 50px;
+    background-color: #4CAF50;
+    border-radius: 50%;
+    cursor: pointer; */
+    transition: all 0.3s ease-in-out;
 }
 
 /* 搜索框------------------------------------------------ */

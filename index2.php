@@ -16,15 +16,16 @@
         #left{
             padding-bottom: 1em;
         }
+        
     </style>
 </head>
 
 <body>  
     <div id="container">
         <!-- 回到顶部箭头 -->
-        <a href="#"><img class="head" src="images/head.png"></a>
+        <a href="#" id="go-top"><img class="head" src="images/head.png"></a>
         <!-- 搜索框 -->
-        <div class="search">
+        <!-- <div class="search">
             <input list="search" placeholder="查看功能位置" />
             <datalist id="search">
                 <option value="学习空间-学习记录"></option>
@@ -39,7 +40,7 @@
                 <option value="个人中心-更改个人信息"></option>
                 <option value="个人中心-更改密码"></option>
             </datalist>
-        </div>
+        </div> -->
 
         <!-- 点击更换背景图片的设置 -->
         <div id="js">
@@ -176,3 +177,4 @@
     
 </body>
 </html>
+

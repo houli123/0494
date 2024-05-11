@@ -27,7 +27,8 @@
     <title>我的个人空间</title>
     <link href="css/index.css" type="text/css" rel="stylesheet" />
     <link rel="icon"  href="images/icon/爱心块状.png">
-    <script src="js/background.js"></script>
+    <script src="js/background.js" type="tex
+    t/javascript"></script>
     <style>
         #right p{
             text-indent: 0.3em;
@@ -41,7 +42,7 @@
 <body>  
     <div id="container">
         <!-- 回到顶部箭头 -->
-        <a href="#"><img class="head" src="images/head.png"></a>
+        <a href="#" id="go-top"><img class="head" src="images/head.png"></a>
         <!-- 搜索框 -->
         <!-- <div class="search">
             <input list="search" placeholder="查看功能位置" />
@@ -105,6 +106,7 @@
                 <!-- 信息这里采用php来实现 -->
                 <?php
                 $uname = 'Jack';  //测试用
+                
                 $sql = "SELECT * FROM users where uname='$uname'";
                 $result = mysqli_query($conn,$sql);
                 $row = mysqli_fetch_array($result);
@@ -112,13 +114,13 @@
 
                 <!-- 姓名框 -->
                 <div id="name">
-                    <php echo $row['uname']; ?>
+                    <?php echo $row['uname'];?>
                     <!-- Jack -->
                 </div>
                 <!-- 签名框 -->
                 <div id="signature">
                     &nbsp;&nbsp;
-                    <!-- <php echo $row->bio; ?> -->
+                    <?php echo $row['bio']; ?>
                     <!-- 我是一个又菜又爱玩电脑的少年，作为计算机专业的学生， -->
 <!-- 我热爱我的专业并为其投入巨大的热情和精力。希望大家能和我一同热爱计算机！ -->
                 </div>
@@ -127,15 +129,15 @@
                     <table>
                         <tr>
                             <td>
-                                <!-- <php echo $row->sex; ?> -->
+                                <?php echo $row['sex']; ?>
                                 <!-- 男 -->
                             </td>
-                            <!-- <td> -->
-                                <!-- <php echo $row->age; ?> -->
+                            <td>
+                                <?php echo $row['age']; ?>
                                 <!-- 18岁 -->
                             </td>
                             <td>
-                                <!-- <php echo $row->age3; ?> -->
+                                <?php echo $row['xinzuo']; ?>
                                 <!-- 双子座 -->
                             </td>
                         </tr>
@@ -157,14 +159,20 @@
                     <a name="info">基本资料</a>
                 </div>
                 <div class="basis">
-                    <p id="a">昵称：Jack</p>
+                    <?php echo "<p id='a'>昵称：".$row['uname']."</p>"; ?>
+                    <?php echo "<p id='a'>性别：" . $row['sex'] . "</p>"; ?>
+                    <?php echo "<p id='a'>年龄：" . $row['age'] . "</p>"; ?>
+                    <?php echo "<p id='a'>星座：" . $row['xinzuo'] . "</p>"; ?>
+                    <?php echo "<p id='a'>手机：" . $row['phone'] . "</p>"; ?>
+                    <?php echo "<p id='a'>邮箱：" . $row['email'] . "</p>"; ?>
+                    <?php echo "<p id='a'>毕业学校：" . $row['gra'] . "</p>"; ?>
+                    <!-- <p id="a">昵称：Jack</p>
                     <p id="a">性别：男</p>
                     <p id="a">年龄：18岁</p>
                     <p id="a">星座：双子座</p>
                     <p id="a">手机：13536627999</p>
                     <p id="a">邮箱：123456789@qq.com</p>
-
-                    <p id="a">毕业学校：深造小学</p>
+                    <p id="a">毕业学校：深造小学</p> -->
                     
                 </div>
 
