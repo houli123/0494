@@ -54,7 +54,7 @@ if (isset($_SESSION["uname"])) {
         <div id="head">
             <!-- 头部背景图片 -->
             <div id="head-background">
-                <img src="../images/photo.png"/>
+                <img src="images/<?php echo $pic;?>" onerror="this.style.display='none'"/>
             </div>
             <!-- 导航栏 -->
             <div id="nav">
@@ -80,7 +80,7 @@ if (isset($_SESSION["uname"])) {
                     <ul>
                         <li><a href="center.php">更改基本资料</a></li>
                         <li><a href="center2.php">更改个人头像</a></li>
-                        <li><a href="center.php">退出登录</a></li>
+                        <li><a href="../php/logout.php">退出登录</a></li>
                        
                     </ul>
                 </div>

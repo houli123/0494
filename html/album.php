@@ -1,3 +1,6 @@
+<?php
+include "php/conn.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,7 +43,7 @@
         <div id="head">
             <!-- 头部背景图片 -->
             <div id="head-background">
-                <img src="../images/photo.png"/>
+                <img src="images/<?php echo $pic;?>" onerror="this.style.display='none'"/>
             </div>
             <!-- 导航栏 -->
             <div id="nav">

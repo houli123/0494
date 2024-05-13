@@ -1,20 +1,5 @@
 <?php
     include "php/conn.php";
-    session_start();
-    if (isset($_SESSION["uname"])){
-    $uname = $_SESSION['uname'];
-    $pwd = $_SESSION['pwd'];
-    $email = $_SESSION['email'];
-    $email = $_SESSION['phone'];
-    $bio = $_SESSION['bio'];
-    $sex = $_SESSION['sex'];
-    $gra = $_SESSION['gra'];
-    $pic = $_SESSION['pic'];
-    $age = $_SESSION['age'];
-    }else{
-    echo "<script>alert('当前未登录，即将进入登陆界面');</script>";
-    // header("Location:html/login.php");
-    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -77,7 +62,7 @@
         <div id="head">
             <!-- 头部背景图片 -->
             <div id="head-background">
-                <img src="images/photo.png"/>
+                <img src="images/<?php echo $pic;?>" onerror="this.style.display='none'"/>
             </div>
             <!-- 导航栏 -->
             <div id="nav">
@@ -86,7 +71,6 @@
                     <li><a href="html/study-main.php">学习空间</a></li>
                     <li><a href="html/album.php">相册空间</a></li>
                     <li><a href="html/blog.php">博客空间</a></li>
-                    <li><a href="html/music.php">音乐空间</a></li>
                     <li><a href="html/center.php">个人中心</a></li>  <!--表单大集合-->
                 </ul>
             </div>
@@ -99,12 +83,12 @@
             <!-- 中间左边 -->
             <div id="left">
                 <div id="head-background">
-                    <img id="imgspe" src="images/photo.png"/>
+                    <img id="imgspe" src="images/<?php echo $pic; ?>" onerror="this.style.display='none'" style="width=90px;height=90px;"/>
                 </div>
 
                 <!-- 信息这里采用php来实现 -->
                 <?php
-                //$uname = 'Jack';  //测试用
+                // $uname = 'Jack';  //测试用
                 
                 $sql = "SELECT * FROM users where uname='$uname'";
                 $result = mysqli_query($conn,$sql);
@@ -132,11 +116,11 @@
                                 <!-- 男 -->
                             </td>
                             <td>
-                                <?php echo $row['age']; ?>
+                                <?php echo $row['age']."岁"; ?>
                                 <!-- 18岁 -->
                             </td>
                             <td>
-                                <?php echo $row['xinzuo']; ?>
+                                <?php echo $row['xinzuo']?$row['xinzuo']:"&nbsp;"; ?>
                                 <!-- 双子座 -->
                             </td>
                         </tr>

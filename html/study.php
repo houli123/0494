@@ -1,3 +1,19 @@
+<?php
+include "php/conn.php";
+if (isset($_SESSION["uname"])) {
+    $uname = $_SESSION['uname'];
+    $pwd = $_SESSION['pwd'];
+    $email = $_SESSION['email'];
+    $sex = $_SESSION['sex'];
+    $phone = $_SESSION['phone'];
+    $bio = $_SESSION['bio'];
+    $gra = $_SESSION['gra'];
+    $pic = $_SESSION['pic'];
+} else {
+    echo "<script>alert('当前未登录，即将进入登陆界面');</script>";
+    header("Location:html/login.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,7 +60,7 @@
         <div id="head">
             <!-- 头部背景图片 -->
             <div id="head-background">
-                <img src="../images/photo.png"/>
+                <img src="images/<?php echo $pic;?>" onerror="this.style.display='none'"/>
             </div>
             <!-- 导航栏 -->
             <div id="nav">

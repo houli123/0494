@@ -4,7 +4,7 @@ CREATE TABLE users (
     uname VARCHAR(50) NOT NULL UNIQUE,
     pwd VARCHAR(255) NOT NULL,
     phone varchar(11),
-    email VARCHAR(100) NOT NULL UNIQUE,
+    email VARCHAR(100) NOT NULL,
     bio TEXT,
     sex ENUM('男', '女') NOT NULL,
     gra VARCHAR(255),

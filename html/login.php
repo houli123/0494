@@ -1,7 +1,7 @@
+<!-- 这是login.php文件 -->
+
 <?php
 include "../php/conn.php";
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,11 +48,9 @@ include "../php/conn.php";
                 <ul>
                     <li><a href="" onclick="alert('请先登录');">主页</a></li>
                     <li><a href="" onclick="alert('请先登录');">学习空间</a></li>
-
                     <li><a href="" onclick="alert('请先登录');">相册空间</a></li>
                     <li><a href="" onclick="alert('请先登录');">博客空间</a></li>
-
-                    <li><a href="" onclick="alert('请先登录');">个人中心</a></li>
+                    <li><a href="" ">个人中心</a></li>
                 </ul>
             </div>
         </div>
@@ -80,7 +78,7 @@ include "../php/conn.php";
                 <hr style="opacity: unset;">
                 <!-- 以下是正式内容 -->
 
-                <form method="post" action="../index.php">
+                <form method="post" action="../php/login+.php">
                     <!-- 下面开始表单 -->
                     <table style="margin-left: auto;
     margin-right: auto;">
@@ -91,7 +89,7 @@ include "../php/conn.php";
                             </label>
                             </td>
                             <td>
-                                <input class="input_input" type="text" placeholder="请输入账号" style="min-width:150px;">
+                                <input name="uname" class="input_input" type="text" placeholder="请输入用户名" style="min-width:150px;">
                             </td>
                         </tr>
 
@@ -102,7 +100,7 @@ include "../php/conn.php";
                             </label>
                             </td>
                             <td>
-                                <input class="input_input" type="password" placeholder="请输入密码" style="min-width:150px;">
+                                <input name="pwd" class="input_input" type="password" placeholder="请输入密码" style="min-width:150px;">
                             </td>
                         </tr>
         
