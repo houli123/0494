@@ -20,6 +20,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // 将每个键值对存储到$_SESSION中
             $_SESSION[$key] = $value;
         }
+        $_SESSION['uname'] = $uname;
+        $_SESSION['pwd'] = $pwd;
         echo "<script>console.log('即将进入首页');location.href='../index.php';</script>";
         
     } else {

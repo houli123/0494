@@ -1,5 +1,8 @@
 <?php
     include "php/conn.php";
+    if(!isset($uname)){
+    echo "<script>console.log('当前未登录');location.href='html/login.php';</script>";
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -144,7 +147,7 @@
                 <div class="basis">
                     <?php echo "<p id='a'>用户名：".$row['uname']."</p>"; ?>
                     <?php echo "<p id='a'>性别：" . $row['sex'] . "</p>"; ?>
-                    <?php echo "<p id='a'>年龄：" . $row['age'] . "</p>"; ?>
+                    <?php echo "<p id='a'>年龄：" . $row['age'] . "岁</p>"; ?>
                     <?php echo "<p id='a'>星座：" . $row['xinzuo'] . "</p>"; ?>
                     <?php echo "<p id='a'>手机：" . $row['phone'] . "</p>"; ?>
                     <?php echo "<p id='a'>邮箱：" . $row['email'] . "</p>"; ?>
@@ -159,7 +162,7 @@
                     
                 </div>
 
-                <div id="prize">
+                <!-- <div id="prize">
                     个人成就
                 </div>
                 <div class="exp">
@@ -172,7 +175,7 @@
                         <li>...</li>
                     </ul>
                 
-                </div>
+                </div> -->
 
                 
             </div>

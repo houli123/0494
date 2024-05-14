@@ -45,6 +45,7 @@ if ($result) {
     // 设置session
     $_SESSION['uname']=$uname;
     $_SESSION['pwd']=$pwd;
+    $_SESSION['pwd2'] = $pwd2;
     $_SESSION['email']=$email;
     $_SESSION['sex']=$sex;
     $_SESSION['phone']=$phone;

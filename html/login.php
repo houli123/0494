@@ -2,6 +2,9 @@
 
 <?php
 include "../php/conn.php";
+if (isset($uname)) {
+    echo "<script>console.log('当前已登录');location.href='center.php';</script>";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

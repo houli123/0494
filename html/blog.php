@@ -1,6 +1,29 @@
 <?php
-include "php/conn.php";
+include "../php/conn.php";
+
+// 设置默认页码
+$page = 0;
+if (isset($_GET['page']) && is_numeric($_GET['page'])) {
+    $page = $_GET['page'];
+}
+
+// 每页显示的博客数量
+$limit = 3;
+$offset = $page * $limit;
+
+// 获取博客总数
+$total_sql = "SELECT COUNT(*) FROM blog";
+$total_result = $conn->query($total_sql);
+$total_row = $total_result->fetch_array();
+$total = $total_row[0];
+$total_pages = ceil($total / $limit);
+
+// 查询数据库获取博客文章数据
+$sql = "SELECT * FROM blog ORDER BY bdate DESC LIMIT $limit OFFSET $offset";
+$result = mysqli_query($conn,$sql);
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,8 +37,58 @@ include "php/conn.php";
     <link rel="icon" href="../images/icon/用户.png" sizes="32*32">
     <script src="../js/background.js"></script>
     <style>
-        
-    </style>
+        /* 分页按钮的样式 */
+    .pagination {
+      margin: 20px 0;
+    }
+
+    .pagination button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin-right: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .pagination button[disabled] {
+      background-color: #CCCCCC;
+      cursor: not-allowed;
+    }
+    /* 在这里添加CSS样式 */
+    .blog-summary {
+      background-color: #E0F2F1;
+      margin-bottom: 15px;
+      padding: 15px;
+      border-radius: 10px;
+    }
+    
+    .blog-title {
+      color: #00c853;
+      font-weight: bold;
+    }
+    
+    .blog-content {
+      display: none;
+      color: #388E3C;
+    }
+    
+    .blog-info{
+      font-size: 0.8em;
+      color: #009688;
+    }
+    
+    .read-more {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      text-decoration: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 
 
@@ -45,17 +118,15 @@ include "php/conn.php";
         <div id="head">
             <!-- 头部背景图片 -->
             <div id="head-background">
-                <img src="images/<?php echo $pic;?>" onerror="this.style.display='none'"/>
+                <img src="../images/<?php echo $pic;?>" onerror="this.style.display='none'"/>
             </div>
             <!-- 导航栏 -->
             <div id="nav">
                 <ul>
                     <li><a href="../index.php">主页</a></li>
                     <li><a href="study-main.php">学习空间</a></li>
-                    
                     <li><a href="album.php">相册空间</a></li>
                     <li><a href="blog.php">博客空间</a></li>
-                     
                     <li><a href="center.php">个人中心</a></li> 
                 </ul>
             </div>
@@ -65,28 +136,57 @@ include "php/conn.php";
 
         <!-- 中间的一块 -->
         <div id="middle">
+            <div id="index">
+                    博客空间
+                </div>
+            <div id="blog-container">
+                
+                <?php
+                if ($result->num_rows > 0) {
+                // 输出每行数据
+                while($row = $result->fetch_assoc()) {
+                echo '<div class="blog-summary">';
+                echo '<h2 class="blog-title">'. $row["btitle"] . '</h2>';
+                echo '<p class="blog-info">作者：' . $row["uname"] . ' - 日期：' . $row["bdate"] .'</p>';
+                echo '<p class="blog-content">' . $row["bcontent"] .'</p>';
+                echo '<button class="read-more" onclick="toggleContent(this)">阅读更多</button>';
+                echo '</div>';
+                }
+                } 
+                ?>
 
-            <div class="blog">
+                <!-- 博客文章循环 -->
+  <?php if ($result->num_rows > 0): ?>
+    <?php while ($row = $result->fetch_assoc()): ?>
+        <!-- 博客文章展示逻辑 -->
+    <?php endwhile; ?>
+<?php else: ?>
+    <p>未找到博客文章。</p>
+<?php endif; ?>
+            </div>  
+
+            <!-- <div class="blog">
                 <div class="title">关于HTML能做什么</div>
                 <div class="date">2023-4-4</div>
-                <div class="desc">HTML是超文本标记语言，是一个网站页面的主要内容和主体框架。主要用来实现静态页面，目前我们看到的文字、图片、动画、声音、表格、超链接等网页元素都是通过HTML实现的。HTML是由各种标签组成的，所学习HTML就是在了解HTML主体框架的结构基础上学习各种标签的使用方法。</div>
-                <a class="detail" href="https://blog.csdn.net/weixin_61370021/article/details/123767114?spm=1001.2014.3001.5502">查看正文 &gt;&gt;</a>
-            </div>
-            <div class="blog">
-                <div class="title">关于CSS能做什么</div>
-                <div class="date">2023-11-6</div>
-                <div class="desc">CSS是层叠样式表，主要用来控制调整网页的样式，它与网页的结构和内容没有关系，仅仅是通过不同语义的标签来调整网页内容的不同表现样式。在网页上实现CSS样式调整一般有两种方式：内嵌式，将CSS代码集中写到HTML文档的头部标签中，并用style标记定义，一般位于head标记中的title标记之后，简而言之就是直接在THML文件中直接添加CSS样式的方式；嵌入式，是将所有的样式放在一个或多个以CSS为拓展名的外部样式表文件中，通过标记将外部样式表文件链接到HTML文件中，简而言之就是HTML文件域CSS文件单独存在，再通过Link的方式将CSS所写的样式添加到HTML中。
-                </div>
-                <a class="detail" href="https://blog.csdn.net/weixin_61370021/article/details/123834765?spm=1001.2014.3001.5502">查看正文 &gt;&gt;</a>
-            </div>
-            <div class="blog">
-                <div class="title">关于JS能做什么</div>
-                <div class="date">2023-12-6</div>
-                <div class="desc">JavaScript是一种完整的网页脚本语言，有自己独立的语法，可以完成复杂的程序逻辑，而HTML和CSS仅仅是标记语言，不具备编程语言的程序逻辑。JavaScript主要负责网页的各式各样的动态功能，因此可以为用户提供更流畅美观的页面浏览效果，以及添加页面交互行为，给用户更好的视觉和使用体验。JavaScript的工作原理是通过在HTML网页中直接嵌入JS脚本，可以实现相应浏览器时间，读写HTML元素内容，更改HTML元素样式等功能。
-                </div>
-                <a class="detail" href="https://blog.csdn.net/weixin_43315739/article/details/86617672?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522164932959616781683955419%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&amp;request_id=164932959616781683955419&amp;biz_id=0&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~blog~sobaiduend~default-2-86617672.nonecase&amp;utm_term=js%E7%AC%94%E8%AE%B0&amp;spm=1018.2226.3001.4450">查看正文 &gt;&gt;</a>
-            </div>
+                <div class="desc">HTML是超文本标记语言</div>
+                <a class="detail" href="h">查看正文 &gt;&gt;</a>
+            </div> -->
+            
+            
 
+        </div>
+
+
+        <!-- 分页按钮 -->
+<div class="pagination">
+  <button onclick="navigateToPage(0)" <?php if ($page == 0)
+                echo "disabled"; ?>>第一页</button>
+            <button onclick="navigateToPage(<?php echo $page - 1; ?>)" <?php if ($page == 0)
+                   echo "disabled"; ?>>上一页</button>
+            <button onclick="navigateToPage(<?php echo $page + 1; ?>)" <?php if ($page == $total_pages - 1)
+                   echo "disabled"; ?>>下一页</button>
+            <button onclick="navigateToPage(<?php echo $total_pages - 1; ?>)" <?php if ($page == $total_pages - 1)
+                   echo "disabled"; ?>>最后一页</button>
         </div>
 
 
@@ -104,3 +204,23 @@ include "php/conn.php";
     
 </body>
 </html>
+
+<script>
+  function toggleContent(button) {
+    var content = button.previousElementSibling;
+    var isVisible = content.getAttribute('data-visible');
+
+    if (isVisible === 'true') {
+      content.style.display = 'none';
+      content.setAttribute('data-visible', 'false');
+      button.textContent = '阅读更多';
+    } else {
+      content.style.display = 'block';
+      content.setAttribute('data-visible', 'true');
+      button.textContent = '收起';
+    }
+  }
+  function navigateToPage(page) {
+      window.location.href = '?page=' + page;
+  }
+</script>

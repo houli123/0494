@@ -1,16 +1,11 @@
 <?php
 include "../php/conn.php";
-
 if (isset($_SESSION["uname"])) {
     $uname = $_SESSION['uname'];
+    // header("Location:center.php");
 } else {
     echo "<script>alert('当前未登录，即将进入登陆界面');</script>";
     header("Location:login.php");
-}
-
-if (isset($_SESSION["uname"])) {
-    $uname = $_SESSION['uname'];
-    // header("Location:login.php");
 }
 
 ?>
@@ -93,75 +88,154 @@ if (isset($_SESSION["uname"])) {
                 </div>
                 <hr style="opacity: unset;">
                 <!-- 以下是正式内容 -->
-                <p>
-                    &nbsp;&nbsp;<b>基本资料</b>&nbsp;&nbsp;&nbsp;&nbsp;<a class="basic" href="../index.php#info">预览</a>
-                </p>
                 
 
-            <form>
-                <!-- 下面开始表单 -->
-                <div id="box" class="box">
-                    <span class="input input_span">
-                        <label class="input_label input_label1">
-                            昵称：&nbsp;&nbsp;
-                        </label>
-                        <input class="input_input" type="text" placeholder="Jack">
-                    </span>
-                </div>
-                <hr>
-                
-                <!-- 性别 -->
-                <div class="box">
-                    <span class="input">
-                        <label class="input_label input_label2">
-                            性别：&nbsp;
-                        </label>
-                        男<input type="radio" name="group1" checked>
-                        女<input type="radio" name="group1" >
-                    </span>
-                </div>
-                <hr>
+            <form method="post" action="../php/center+.php" enctype="multipart/form-data">
+                    <!-- 下面开始表单 -->
+                    <table style="margin-left: auto;
+    margin-right: auto;">
+                        
+                        <tr>
+                            <td>
+                                <label class="input_label input_label1 xrequired" style="top:0px;">
+                                基本资料：
+                            </label>
+                            </td>
+                            <td>
+                                <a class="basic " href="../index.php#info">预览</a>
+                            </td>
+                        </tr>
 
-                <!-- 生日 -->
-                <div class="box">
-                    <span class="input">
-                        <label class="input_label input_label2">
-                            生日：&nbsp;
-                        </label>
-                        <input type="date" value="2003-06-18">
-                    </span>
-                </div>
-                <hr>
+                        <tr>
+                            <td>
+                                <label class="input_label input_label1 xrequired" style="top:0px;">
+                                密码：
+                            </label>
+                            </td>
+                            <td>
+                                <input name="pwd" class="input_input" type="password" placeholder="请输入要修改的密码" style="min-width:200px;">
+                            </td>
+                        </tr>
 
-                <!-- 星座 -->
-                <div class="box">
-                    <span class="input">
-                        <label class="input_label input_label2">
-                            星座：&nbsp;
-                        </label>
-                        双子座
-                    </span>
-                </div>
-                <hr>
+                        <tr>
+                            <td>
+                                <label class="input_label input_label1 xrequired" style="top:0px;">
+                                再次输入密码：
+                            </label>
+                            </td>
+                            <td>
+                                <input name="pwd2" class="input_input" type="password" placeholder="请再次输入密码" style="min-width:200px;">
+                            </td>
+                        </tr>
 
-                <!-- 现居地 -->
-                <div id="box" class="box" style="overflow-x:hidden">
-                    <span class="input" style="width: 500px">
-                        <label class="input_label input_label2" style="float: left;top:0.8em;">
-                            现居地：
-                        </label>
-                        <select id="provident" style="width: 85px;height: 55px; float:left"><option value="0">选择省</option><option value="34">安徽</option><option value="82">澳门</option><option value="11">北京</option></select>
-                        <input class="input_input input_input2" type="text" placeholder="详细地址" style="float: left;">
-                    </span>
-                </div>
-                <hr>
-                
-                <div class="box">
+                        <tr>
+                            <td>
+                                <label class="input_label input_label1 xrequired" style="top:0px;">
+                                性别：
+                            </label>
+                            </td>
+                            <td>
+                                <input name="sex" type="radio" value="男" style="min-width:10px;">男
+                                <input name="sex" type="radio" value="女" style="min-width:10px;">女
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="input_label input_label1 " style="top:0px;">
+                                年龄：
+                            </label>
+                            </td>
+                            <td>
+                                <input name="age" class="input_input" type="text" placeholder="请输入要修改的年龄" style="min-width:200px;">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label class="input_label input_label1" style="top:0px;">
+                                手机号：
+                            </label>
+                            </td>
+                            <td>
+                                <input name="phone" class="input_input" type="text" placeholder="请输入要修改的手机号" style="min-width:200px;">
+                            </td>
+                        </tr>
+
+                        
+
+                        <tr>
+                            <td>
+                                <label class="input_label input_label1" style="top:0px;">
+                                星座：
+                            </label>
+                            </td>
+                            <td>
+                                <select name="xinzuo" class="input_input" style="min-width:233px;">
+                                <option value="">请选择星座</option>
+                                    <option value="白羊座">白羊座</option>
+                                    <option value="金牛座">金牛座</option>
+                                    <option value="双子座">双子座</option>
+                                    <option value="巨蟹座">巨蟹座</option>
+                                    <option value="狮子座">狮子座</option>
+                                    <option value="处女座">处女座</option>
+                                    <option value="天秤座">天秤座</option>
+                                    <option value="天蝎座">天蝎座</option>
+                                    <option value="射手座">射手座</option>
+                                    <option value="摩羯座">摩羯座</option>
+                                    <option value="水瓶座">水瓶座</option>
+                                    <option value="双鱼座">双鱼座</option>
+                                </select>
+                            </td>
+        
+                        </tr>
+
+                        
+
+                        <tr>
+                            <td>
+                                <label class="input_label input_label1" style="top:0px;">
+                                毕业学校：
+                            </label>
+                            </td>
+                            <td>
+                                <input name="gra" class="input_input" type="password" placeholder="请输入要修改的毕业学校" style="min-width:200px;">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label class="input_label input_label1" style="top:0px;">
+                                个人介绍：
+                            </label>
+                            </td>
+                            <td>
+                                <textarea name="intro" class="input_input" placeholder="请输入要修改的个人介绍" style="min-width:280px;min-height:300px;"></textarea>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label class="input_label input_label1" style="top:0px;">
+                                个人照片：
+                            </label>
+                            </td>
+                            <td>
+                                <input name="pic" type="file" style="position:relative;right:-3em;">
+                            </td>
+                        </tr>
+        
                     
-                        <input type="submit" value="保存" onclick="alert('保存失败')"></input>
-                    
-                </div> 
-            </form>
+                    </table>
+                    <hr>
+
+
+                    <div class="box">
+
+                        <input type="submit"></input>
+                        <input type="reset"></input>
+
+                    </div>
+                </form>
 
             </div>
         </div>

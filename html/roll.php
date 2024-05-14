@@ -2,6 +2,9 @@
 
 <?php
 include "../php/conn.php";
+if(isset($_SESSION['uname'])){
+    header("location:center.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
