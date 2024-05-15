@@ -4,7 +4,7 @@ if (isset($_SESSION["uname"])) {
     $uname = $_SESSION['uname'];
     // header("Location:center.php");
 } else {
-    echo "<script>alert('当前未登录，即将进入登陆界面');</script>";
+    echo "<script>console.log('当前未登录，即将进入登陆界面');</script>";
     header("Location:login.php");
 }
 
@@ -74,7 +74,7 @@ if (isset($_SESSION["uname"])) {
                 <div id="nav1">
                     <ul>
                         <li><a href="center.php">更改基本资料</a></li>
-                        <li><a href="center2.php">更改个人头像</a></li>
+                        <li><a href="center2.php">更改其他资料</a></li>
                         <li><a href="../php/logout.php">退出登录</a></li>
                        
                     </ul>
@@ -201,29 +201,6 @@ if (isset($_SESSION["uname"])) {
                                 <input name="gra" class="input_input" type="password" placeholder="请输入要修改的毕业学校" style="min-width:200px;">
                             </td>
                         </tr>
-
-                        <tr>
-                            <td>
-                                <label class="input_label input_label1" style="top:0px;">
-                                个人介绍：
-                            </label>
-                            </td>
-                            <td>
-                                <textarea name="intro" class="input_input" placeholder="请输入要修改的个人介绍" style="min-width:280px;min-height:300px;"></textarea>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <label class="input_label input_label1" style="top:0px;">
-                                个人照片：
-                            </label>
-                            </td>
-                            <td>
-                                <input name="pic" type="file" style="position:relative;right:-3em;">
-                            </td>
-                        </tr>
-        
                     
                     </table>
                     <hr>
