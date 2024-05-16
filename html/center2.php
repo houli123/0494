@@ -148,3 +148,14 @@ if (isset($_SESSION["uname"])) {
     
 </body>
 </html>
+
+<script>
+    function adjustHeights() {
+        var left = document.getElementById('left');
+        var right = document.getElementById('right');
+        left.style.height = right.offsetHeight-20 + 'px'; // 设置#left的高度与#right相同
+    }
+
+    window.onload = adjustHeights;
+    window.onresize = adjustHeights; // 当窗口尺寸改变时再次调整高度
+</script>

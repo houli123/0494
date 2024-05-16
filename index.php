@@ -217,4 +217,15 @@ goTopBtn.addEventListener('click', function () {
         behavior: 'smooth' // 平滑滚动到页面顶部
     });
 });
+
+
+
+function adjustHeights() {
+        var left = document.getElementById('left');
+        var right = document.getElementById('right');
+        left.style.height = right.offsetHeight-20 + 'px'; // 设置#left的高度与#right相同
+    }
+
+    window.onload = adjustHeights;
+    window.onresize = adjustHeights; // 当窗口尺寸改变时再次调整高度
 </script>
