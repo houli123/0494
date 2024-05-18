@@ -6,8 +6,8 @@ if (isset($_SESSION["uname"])) {
     $pic = $_SESSION['pic'];
 } else {
     // echo "<script>alert('当前未登录，即将进入登陆界面');</script>";
-    header("Location:login.php");
-    exit(); // 终止脚本执行
+    //header("Location:login.php");
+    //exit(); // 终止脚本执行
 }
 ?>
 <!DOCTYPE html>
@@ -78,7 +78,7 @@ if (isset($_SESSION["uname"])) {
 
 /* 完成按钮样式 */
 .todoBtn.done {
-    background-color: #38ef7d;
+    background-color: #44b144;
     color: white;
 }
 
@@ -157,12 +157,12 @@ if (isset($_SESSION["uname"])) {
                 <hr>
                 
                 <div id="todolistBox">
-    <div id="top">
-        <h1>ToDoList</h1>
-        <input type="text" id="todoInput" placeholder="写下小目标，然后回车~">
-    </div>
-    <ul id="todolist"></ul>
-</div>
+                    <div id="top">
+                        <h1>ToDoList</h1>
+                        <input type="text" id="todoInput" placeholder="写下小目标，然后回车~">
+                    </div>
+                    <ul id="todolist"></ul>
+                </div>
 
             
 
@@ -188,7 +188,16 @@ if (isset($_SESSION["uname"])) {
 </html>
 
 <script>
+    function adjustHeights() {
+        var left = document.getElementById('left');
+        var right = document.getElementById('right');
+        left.style.height = right.offsetHeight-20 + 'px'; // 设置#left的高度与#right相同
+    }
     window.onload = function () {
+        // 调整高度
+            var left = document.getElementById('left');
+            var right = document.getElementById('right');
+            left.style.height = right.offsetHeight-20 + 'px'; // 设置#left的高度与#right相同
     document.getElementById('todoInput').addEventListener('keydown', function (e) {
         if (e.keyCode === 13 && this.value) {
             const li = document.createElement('li');
@@ -217,7 +226,10 @@ if (isset($_SESSION["uname"])) {
             document.getElementById('todolist').appendChild(li);
 
             this.value = '';
-        }
+            }
     });
 };
+
+
+    window.onresize = adjustHeights; // 当窗口尺寸改变时再次调整高度
 </script>

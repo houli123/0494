@@ -4,8 +4,9 @@ if (isset($_SESSION["uname"])) {
     $uname = $_SESSION['uname'];
     // header("Location:center.php");
 } else {
-    echo "<script>console.log('当前未登录，即将进入登陆界面');</script>";
-    header("Location:login.php");
+    // $uname = "";
+    // echo "<script>console.log('当前未登录，即将进入登陆界面');</script>";
+    // header("Location:login.php");
 }
 
 // 设置默认页码
@@ -193,7 +194,7 @@ form input[type=submit] {
                         // echo $row['id'];
                 echo '<div class="blog-summary">';
                 echo '<h2 class="blog-title">'. $row["btitle"] . '</h2>';
-                echo '<p class="blog-info">作者：' . $row["uname"] . ' - 日期：' . $row["bdate"] .'</p>';
+                echo '<p class="blog-info">作者：' . $row["uname"] . ' - 发布时间：' . $row["bdate"] .'</p>';
                 echo '<p class="blog-content">' . $row["bcontent"] .'</p>';
                 echo '<button class="read-more" onclick="toggleContent(this)">阅读更多</button>';
                     // 如果博客是由当前用户发表的，则显示删除按钮
@@ -216,11 +217,17 @@ form input[type=submit] {
             </div>  
 
             <form action="../php/blog+.php" method="post">
-            <label for="btitle">要新增的博客标题:</label><br>
-            <input type="text" id="btitle" name="btitle"><br><br>
-            <label for="bcontent">要新增的博客内容:</label><br>
-            <textarea id="bcontent" name="bcontent"></textarea><br><br>
-            <input type="submit" value="提交">
+    <label for="btitle">要新增的博客标题:</label><br>
+    <input type="text" id="btitle" name="btitle"><br><br>
+    <label for="bcontent">要新增的博客内容:</label><br>
+    <textarea id="bcontent" name="bcontent"></textarea><br><br>
+    
+    <?php if (isset($_SESSION["uname"])): ?>
+                    <input type="submit" value="提交">
+                <?php else: ?>
+                    <input type="submit" value="提交" disabled title="请登录以提交博客">
+                    <p>请<a href="login.php">登录</a>以提交博客。</p>
+                <?php endif; ?>
             </form>
         </div>
 

@@ -6,8 +6,8 @@ if (isset($_SESSION["uname"])) {
     $pic = $_SESSION['pic'];
 } else {
     // echo "<script>alert('当前未登录，即将进入登陆界面');</script>";
-    header("Location:login.php");
-    exit(); // 终止脚本执行
+    //header("Location:login.php");
+    //exit(); // 终止脚本执行
 }
 ?>
 <!DOCTYPE html>
@@ -24,40 +24,6 @@ if (isset($_SESSION["uname"])) {
     <link rel="icon" href="../images/icon/标记.png" sizes="32*32">
     <script src="../js/background.js"></script>
     <style>
-        #right {
-    background: white; /* 确保背景是白色 */
-    padding: 20px; /* 针对#right的内边距 */
-    box-sizing: border-box; /* 防止内容溢出 */
-}
-
-.calendar, .sign-content {
-    max-width: 100%; /* 确保内容不超过父容器宽度 */
-    margin-bottom: 20px; /* 和下一元素之间的间距 */
-    box-sizing: border-box; /* 防止内容溢出 */
-}
-
-.sign-content {
-    width: calc(100% - 40px); /* 考虑到padding的宽度 */
-    margin: 0 auto; /* 上下保持原样，左右居中对齐 */
-}
-
-.sign-texts {
-    width: 100%; /* 确保'.sign-texts'不会超出'.sign-content' */
-    margin: 10px 0; /* 与上下元素的间距 */
-    padding: 5px 0; /* 文字上下的间距 */
-    text-align: center;
-    font-size: 16px;
-    color: #dd514c;
-    border-bottom: 2px solid #dd514c;
-    box-sizing: border-box; /* 防止内容溢出 */
-}
-
-/* 其他样式保持不变 */
-/* ... other styles ... */
-
-
-
-        /* 在这里添加CSS样式 */
         #real-time-clock {
             font-family: 'Arial', sans-serif;
             font-size: 24px;
@@ -183,12 +149,12 @@ if (isset($_SESSION["uname"])) {
             <img src="../images/bak2.png" alt="" class="photo1">
         </div>
         <!-- 搜索框 -->
-        <div class="search">
+        <!-- <div class="search">
             <input type="search" placeholder="Search">
             <a href="#"  onclick="alert('查找失败')">
                 <i>🔍</i>
             </a>
-        </div>
+        </div> -->
 
 
         <img id="leaf" src="../images/gif.png" />

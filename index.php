@@ -1,7 +1,7 @@
 <?php
     include "php/conn.php";
     if(!isset($uname)){
-    echo "<script>console.log('当前未登录');location.href='html/login.php';</script>";
+    // echo "<script>console.log('当前未登录');location.href='html/blog.php';</script>";
     }
 ?>
 <!DOCTYPE html>
@@ -115,7 +115,7 @@
                     <table>
                         <tr>
                             <td>
-                                <?php echo $row['sex']; ?>
+                                <?php echo $row['sex'] ? $row['sex'] : "&nbsp;"; ?>
                                 <!-- 男 -->
                             </td>
                             <td>

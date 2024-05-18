@@ -1,5 +1,9 @@
 <?php
-include "php/conn.php";
+include "../php/conn.php";
+if(!isset($uname)){
+    header("Location:login.php");
+    exit(); // 终止脚本执行
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,6 +17,130 @@ include "php/conn.php";
     <link href="../css/blog.css" type="text/css" rel="stylesheet" />
     <link href="../css/album.css" type="text/css" rel="stylesheet" />
     <link rel="icon" href="../images/icon/图片.png" sizes="32*32">
+    <style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    ul {
+        list-style: none;
+    }
+    
+    a {
+        text-decoration: none;
+    }
+    
+    #contain {
+        position: relative;
+        width: 500px;
+        height: 260px;
+        margin: 20px auto;
+        overflow: hidden;
+        /*溢出隐藏：只显示一张图片*/
+    }
+    
+    #contain .parent {
+        position: absolute;
+        width: 2500px;
+        /*整个图片层长度：500*5=2500*/
+        height: 260px;
+    }
+    
+    #contain .parent li {
+        float: left;
+        width: 500px;
+        height: 100%;
+    }
+    
+    #contain .parent li img {
+        width: 100%;
+        height: 100%;
+    }
+    
+    #contain .btnLeft,
+    #contain .btnRight {
+        width: 30px;
+        height: 30px;
+        background-color: #9E9E9E;
+        border-radius: 20%;
+        opacity: 80%;
+        position: absolute;
+        /*包含块为图片显示层contain*/
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        font-size: 20px;
+        color: #f40;
+        text-align: center;
+        line-height: 30px;
+    }
+    
+    #contain .btnLeft {
+        left: 10px;
+    }
+    
+    #contain .btnRight {
+        right: 10px;
+    }
+    
+    #contain .btnLeft:hover,
+    #contain .btnRight:hover {
+        opacity: 90%;
+        cursor: pointer;
+    }
+    /*蒙层*/
+    
+    #contain .modal {
+        width: 100%;
+        height: 40px;
+        background: rgba(0, 0, 0, .3);
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        line-height: 40px;
+        padding: 0 40px;
+        box-sizing: border-box;
+    }
+    
+    #contain .modal .title {
+        float: left;
+        color: #fff;
+        font-size: 12px;
+    }
+    
+    #contain .modal .dots {
+        float: right;
+        position: absolute;
+        bottom: 10px;
+        left: 340px;
+    }
+    
+    #contain .modal .dots li {
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        float: left;
+        /*可以使用行块盒*/
+        /*display: inline-block;*/
+        margin: 0 5px;
+        cursor: pointer;
+    }
+    
+    .clearfix::after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+    
+    .on {
+        background-color: red;
+    }
+    
+    .off {
+        background-color: gray;
+    }
+</style>
     <script src="../js/background.js"></script>
 </head>
 
@@ -30,12 +158,12 @@ include "php/conn.php";
         </div>
         
         <!-- 搜索框 -->
-        <div class="search">
+        <!-- <div class="search">
             <input type="search" placeholder="Search">
             <a href="#" onclick="alert('查找失败')">
                 <i>🔍</i>
             </a>
-        </div>
+        </div> -->
 
 
         <img id="leaf" src="../images/gif.png" />
@@ -63,37 +191,34 @@ include "php/conn.php";
 
         <!-- 中间的一块 -->
         <div id="middle">
+            
+            <div id="contain">
+        <ul class="parent" style="left: 0;">
+            <li><img src="../images/bak.png"></li>
+            <li><img src="../images/bak3.png"></li>
+            <li><img src="../images/bak2.png"></li>
+            <li><img src="../images/bak4.png"></li>
+            <li><img src="../images/bak5.png"></li>
+        </ul>
+
+        <div class="btnLeft">&lt;</div>
+        <div class="btnRight">&gt;</div>
+        <div class="modal">
             <div class="title">
-				<h2>美&nbsp;·&nbsp;食</h2>
-				<p>Delicious&nbsp;&nbsp;&nbsp;Food</p>
-			</div>
-            <div id="grid">
-                <div id="box" class="box1">
-                    <img src="../images/food1.png" width="80%" height="40%"/>
-                    <h3>牛肉</h3>
-                    <p>
-                        烤肋眼牛排，新鲜的辣根炒蘑菇和芦笋，香草酸豆黄油。<br />
-                        --腓力
-                    </p>
-                </div>
-                <div id="box" class="box2">
-                    <img src="../images/food2.png" width="80%" height="60%"/>
-                    <h3>蛋糕甜品</h3>
-                    <p>
-                        如果你不喜欢黄油,那就用奶酪吧<br />
-                        --茱莉亚.蔡尔德
-                    </p>
-                </div>
-                <div id="box"  class="box3">
-                    <img src="../images/food3.png" width="80%" height="60%"/>
-                    <h3>汤</h3>
-                    <p style="position:relative;left:5%;">
-                        蔬香弥漫，如杯好茶。汤味醇厚，适口益饮。<br />
-                        
-                    </p>
-                    </p>
-                </div>
+                <!-- <h2>轮播图</h2> -->
             </div>
+            <div class="dots">
+                <ul class="clearfix">
+                    <li class="on"></li>
+                    <li class="off"></li>
+                    <li class="off"></li>
+                    <li class="off"></li>
+                    <li class="off"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
 
             <div class="photos">
                 <div class="title2">
@@ -158,3 +283,84 @@ include "php/conn.php";
     
 </body>
 </html>
+<script type="text/javascript">
+        var imgShow = document.getElementsByClassName('parent')[0],
+            dotList = document.querySelectorAll('.dots >.clearfix > li');
+        var btnLeft = document.getElementsByClassName('btnLeft')[0],
+            btnRight = document.getElementsByClassName('btnRight')[0];
+        var dotLen = dotList.length,
+            index = 0; //轮播层的图片索引，0表示第一张
+
+        //圆点显示
+        function showRadius() {
+            for (var i = 0; i < dotLen; i++) {
+                if (dotList[i].className === "on") {
+                    dotList[i].className = "off";
+                }
+            }
+            dotList[index].className = "on";
+        }
+
+        //向左移动
+        btnLeft.onclick = function() {
+            index--;
+            if (index < 0) { /*第1张向左时，变为第5张*/
+                index = 4;
+            }
+            showRadius();
+            var left;
+            var imgLeft = imgShow.style.left;
+            if (imgLeft === "0px") { /*当是第1张时，每张图片左移，移4张图，位置为-(4*500)*/
+                left = -2000;
+            } else {
+                left = parseInt(imgLeft) + 500; /*由于left为负数，每左移一张加500*/
+            }
+            imgShow.style.left = left + "px";
+        }
+
+        //向右移动
+        btnRight.onclick = function() {
+            index++;
+            if (index > 4) { /*第5张向右时，变为第1张*/
+                index = 0;
+            }
+            showRadius();
+            var right;
+            var imgLeft = imgShow.style.left;
+            if (imgLeft === "-2000px") { /*当是第5张时，第1张的位置为0*/
+                right = 0;
+            } else {
+                right = parseInt(imgLeft) - 500; /*由于left为负数，每右移一张减500*/
+            }
+            imgShow.style.left = right + "px";
+        }
+
+        // 自动轮播
+        var timer;
+        function autoPlay() {
+        	timer = setInterval(function() {
+        		var right;
+        		var imgLeft = imgShow.style.left;
+        		if(imgLeft === "-2000px") {
+        			right = 0;
+        		}
+        		else{
+        			right = parseInt(imgLeft) - 500;
+        		}
+        		imgShow.style.left = right + "px";
+        	} ,1000)
+        }
+        autoPlay();
+
+        for (var i = 0; i < dotLen; i++) {
+            /*利用闭包传递索引*/
+            (function(i) {
+                dotList[i].onclick = function() {
+                    var dis = index - i; //当前位置和点击的距离
+                    imgShow.style.left = (parseInt(imgShow.style.left) + dis * 500) + "px";
+                    index = i; //显示当前位置的圆点
+                    showRadius();
+                }
+            })(i);
+        }
+    </script>

@@ -4,8 +4,8 @@ if (isset($_SESSION["uname"])) {
     $uname = $_SESSION['uname'];
     // header("Location:center.php");
 } else {
-    echo "<script>console.log('当前未登录，即将进入登陆界面');</script>";
-    header("Location:login.php");
+    // echo "<script>console.log('当前未登录，即将进入登陆界面');</script>";
+    // header("Location:login.php");
 }
 
 ?>

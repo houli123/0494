@@ -6,8 +6,22 @@ if (isset($_SESSION["uname"])) {
     $pic = $_SESSION['pic'];
 } else {
     // echo "<script>alert('当前未登录，即将进入登陆界面');</script>";
-    header("Location:login.php");
-    exit(); // 终止脚本执行
+    // header("Location:login.php");
+    //exit(); // 终止脚本执行
+}
+
+// 定义计数器文件的路径
+$counter_file = '../counter.txt';
+
+// 判断文件是否存在
+if (!file_exists($counter_file)) {
+    // 如果文件不存在，创建文件并将计数器初始为1
+    file_put_contents($counter_file, '1');
+    $count = 1;
+} else {
+    // 如果文件存在，读取当前计数，加1后保存
+    $count = (int) file_get_contents($counter_file) + 1;
+    file_put_contents($counter_file, $count);
 }
 ?>
 <!DOCTYPE html>
@@ -260,6 +274,27 @@ if (isset($_SESSION["uname"])) {
 .sign-load > button:hover {
     background-color: #d4d4d4; /* 鼠标悬浮加载按钮的样式 */
 }
+.calendar, .sign-content {
+    max-width: 100%; /* 确保内容不超过父容器宽度 */
+    margin-bottom: 20px; /* 和下一元素之间的间距 */
+    box-sizing: border-box; /* 防止内容溢出 */
+}
+
+.sign-content {
+    width: calc(100% - 40px); /* 考虑到padding的宽度 */
+    margin: 0 auto; /* 上下保持原样，左右居中对齐 */
+}
+
+.sign-texts {
+    width: 100%; /* 确保'.sign-texts'不会超出'.sign-content' */
+    margin: 10px 0; /* 与上下元素的间距 */
+    padding: 5px 0; /* 文字上下的间距 */
+    text-align: center;
+    font-size: 16px;
+    color: #dd514c;
+    border-bottom: 2px solid #dd514c;
+    box-sizing: border-box; /* 防止内容溢出 */
+}
     </style>
 </head>
 
@@ -374,14 +409,14 @@ if (isset($_SESSION["uname"])) {
 
                 <!-- 签到记录 -->
                 <div class="sign-logs" style="display: none;" id="signLogs">
-                    <span>已连续签到<span id="signTimes">1</span>次，<a href="../indexMenus/signlogs.html">我的签到记录</a></span>
+                    <span>已签到<span id="signTimes"><?php echo $count ?></span>次
                 </div>
 
-                <div class="sign-texts">今日签到</div>
+
 
                 <!-- 签到用户 -->
                 <div class="sign-users" style="display: none;" id="signUsers">
-                    <span><img src="../images/<?php echo $pic;?>" onerror="this.style.display='none'" style="height:50px;width:50px;position:relative;top:-8px;"></span>
+                    <span><img src="../images/<?php echo $pic;?>" onerror="this.style.display='none'" style="height:50px;width:50px;position:relative;top:-15px;"></span>
                     <span><?php echo $uname;?></span>
                     <span id="signMin"></span>
                 </div>
@@ -522,6 +557,14 @@ if (isset($_SESSION["uname"])) {
         var signmin = hours + mao + min; // 签到小时分钟
         document.getElementById('todays').innerHTML = signday; //更新签到日期
         document.getElementById('signMin').innerHTML = signmin; //更新签到时间
+        adjustHeights();
+    }
+function adjustHeights() {
+        var left = document.getElementById('left');
+        var right = document.getElementById('right');
+        left.style.height = right.offsetHeight-20 + 'px'; // 设置#left的高度与#right相同
     }
 
+    window.onload = adjustHeights;
+    window.onresize = adjustHeights; // 当窗口尺寸改变时再次调整高度
     </script>

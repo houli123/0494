@@ -5,6 +5,8 @@ $current_uname = $_SESSION['uname'];
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $btitle = $_POST['btitle'];
     $bcontent = $_POST['bcontent'];
+    
+    date_default_timezone_set('Asia/Shanghai');
     // 获取当前日期
     $bdate = date("Y-m-d H:i:s"); // 使用DATETIME数据类型
     // 插入数据的准备语句
