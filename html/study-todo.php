@@ -24,7 +24,9 @@ if (isset($_SESSION["uname"])) {
     <link rel="icon" href="../images/icon/标记.png" sizes="32*32">
     <script src="../js/background.js"></script>
     <style>
-
+body {
+            background-image: url("../images/3.jpg");
+        }
 /* 当前任务列表盒子样式 */
 #todolistBox {
     max-width: 500px;
@@ -103,12 +105,12 @@ if (isset($_SESSION["uname"])) {
             <img src="../images/bak2.png" alt="" class="photo1">
         </div>
         <!-- 搜索框 -->
-        <div class="search">
+        <!-- <div class="search">
             <input type="search" placeholder="Search">
             <a href="#"  onclick="alert('查找失败')">
                 <i>🔍</i>
             </a>
-        </div>
+        </div> -->
 
 
         <img id="leaf" src="../images/gif.png" />
@@ -116,7 +118,7 @@ if (isset($_SESSION["uname"])) {
         <div id="head">
             <!-- 头部背景图片 -->
             <div id="head-background">
-                <img src="images/<?php echo $pic;?>" onerror="this.style.display='none'"/>
+                <img src="../images/<?php echo $pic;?>" onerror="this.style.display='none'"/>
             </div>
             <!-- 导航栏 -->
             <div id="nav">

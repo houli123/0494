@@ -24,6 +24,9 @@ if (isset($_SESSION["uname"])) {
     <link rel="icon" href="../images/icon/标记.png" sizes="32*32">
     <script src="../js/background.js"></script>
     <style>
+        body {
+            background-image: url("../images/3.jpg");
+        }
         #real-time-clock {
             font-family: 'Arial', sans-serif;
             font-size: 24px;
@@ -162,7 +165,7 @@ if (isset($_SESSION["uname"])) {
         <div id="head">
             <!-- 头部背景图片 -->
             <div id="head-background">
-                <img src="images/<?php echo $pic;?>" onerror="this.style.display='none'"/>
+                <img src="../images/<?php echo $pic;?>" onerror="this.style.display='none'"/>
             </div>
             <!-- 导航栏 -->
             <div id="nav">

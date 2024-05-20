@@ -19,6 +19,11 @@ if (isset($uname)) {
     <link href="../css/center.css" type="text/css" rel="stylesheet" />
     <link rel="icon" sizes="16x16" href="../images/icon/用户.png">
     <script src="../js/background.js"></script>
+    <style>
+        body {
+            background-image: url("../images/3.jpg");
+        }
+    </style>
 </head>
 
 
@@ -51,7 +56,7 @@ if (isset($uname)) {
                 <ul>
                     <li><a href="../index.php">主页</a></li>
                     <li><a href="study-main.php" ">学习空间</a></li>
-                    <li><a href="" onclick="alert('请先登录');">相册空间</a></li>
+                    <li><a href="album.php">相册空间</a></li>
                     <li><a href="blog.php">博客空间</a></li>
                     <li><a href="" >个人中心</a></li>
                 </ul>

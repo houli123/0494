@@ -18,11 +18,13 @@ if(!isset($uname)){
     <link href="../css/album.css" type="text/css" rel="stylesheet" />
     <link rel="icon" href="../images/icon/图片.png" sizes="32*32">
     <style type="text/css">
+    body {
+        background-image: url("../images/3.jpg");
+    }
     * {
         margin: 0;
         padding: 0;
     }
-    
     ul {
         list-style: none;
     }
@@ -171,7 +173,7 @@ if(!isset($uname)){
         <div id="head">
             <!-- 头部背景图片 -->
             <div id="head-background">
-                <img src="images/<?php echo $pic;?>" onerror="this.style.display='none'"/>
+                <img src="../images/<?php echo $pic;?>" onerror="this.style.display='none'"/>
             </div>
             <!-- 导航栏 -->
             <div id="nav">
@@ -194,11 +196,15 @@ if(!isset($uname)){
             
             <div id="contain">
         <ul class="parent" style="left: 0;">
-            <li><img src="../images/bak.png"></li>
-            <li><img src="../images/bak3.png"></li>
-            <li><img src="../images/bak2.png"></li>
-            <li><img src="../images/bak4.png"></li>
-            <li><img src="../images/bak5.png"></li>
+            <?php
+            for ($i = 1; $i <= 5;$i++){
+                echo "<li><img src='../images/forest/$i.png'></li>";
+            }
+             ?>
+            <!-- <li><img src="../images/forest/1.png"></li>
+            <li><img src="../images/forest/1.png"></li>
+            <li><img src="../images/forest/1.png"></li>
+            <li><img src="../images/forest/1.png"></li> -->
         </ul>
 
         <div class="btnLeft">&lt;</div>
@@ -231,31 +237,31 @@ if(!isset($uname)){
                 <!-- 相册的实现 -->
                 <div class="content2">
                     <ul class="bigView">
-                        <li id="img1"><img src="../images/trip1.png" width="700" height="400" /></li>
-                        <li id="img2"><img src="../images/trip2.png" width="700" height="400" /></li>
-                        <li id="img3"><img src="../images/trip3.png" width="700" height="400" /></li>
-                        <li id="img4"><img src="../images/trip4.png" width="700" height="400" /></li>
-                        <li id="img5"><img src="../images/trip5.png" width="700" height="400" /></li>
-                        <li id="img6"><img src="../images/trip6.png" width="700" height="400" /></li>
-                        <li id="img7"><img src="../images/trip7.png" width="700" height="400" /></li>
-                        <li id="img8"><img src="../images/trip8.png" width="700" height="400" /></li>
-                        <li id="img9"><img src="../images/trip9.png" width="700" height="400" /></li>
-                        <li id="img10"><img src="../images/trip10.png" width="700" height="400" /></li>
+                        <li id="img1"><img src="../images/star/1.png" width="700" height="400" /></li>
+                        <li id="img2"><img src="../images/star/2.png" width="700" height="400" /></li>
+                        <li id="img3"><img src="../images/star/3.png" width="700" height="400" /></li>
+                        <li id="img4"><img src="../images/star/4.png" width="700" height="400" /></li>
+                        <li id="img11"><img src="../images/star/11.png" width="700" height="400" /></li>
+                        <li id="img12"><img src="../images/star/12.png" width="700" height="400" /></li>
+                        <li id="img7"><img src="../images/star/7.png" width="700" height="400" /></li>
+                        <li id="img8"><img src="../images/star/8.png" width="700" height="400" /></li>
+                        <li id="img9"><img src="../images/star/9.png" width="700" height="400" /></li>
+                        <li id="img10"><img src="../images/star/10.png" width="700" height="400" /></li>
                     </ul>
                     <!--隐藏滚动条-->
                     <div class="smallBox">
     
                         <ul class="smallView">
-                            <li><a href="#img1"><img src="../images/trip1.png" /></a></li>
-                            <li><a href="#img2"><img src="../images/trip2.png" /></a></li>
-                            <li><a href="#img3"><img src="../images/trip3.png" /></a></li>
-                            <li><a href="#img4"><img src="../images/trip4.png" /></a></li>
-                            <li><a href="#img5"><img src="../images/trip5.png" /></a></li>
-                            <li><a href="#img6"><img src="../images/trip6.png" /></a></li>
-                            <li><a href="#img7"><img src="../images/trip7.png" /></a></li>
-                            <li><a href="#img8"><img src="../images/trip8.png" /></a></li>
-                            <li><a href="#img9"><img src="../images/trip9.png" /></a></li>
-                            <li><a href="#img10"><img src="../images/trip10.png" /></a></li>
+                            <li><a href="#img1"><img src="../images/star/1.png" /></a></li>
+                            <li><a href="#img2"><img src="../images/star/2.png" /></a></li>
+                            <li><a href="#img3"><img src="../images/star/3.png" /></a></li>
+                            <li><a href="#img4"><img src="../images/star/4.png" /></a></li>
+                            <li><a href="#img11"><img src="../images/star/11.png" /></a></li>
+                            <li><a href="#img12"><img src="../images/star/12.png" /></a></li>
+                            <li><a href="#img7"><img src="../images/star/7.png" /></a></li>
+                            <li><a href="#img8"><img src="../images/star/8.png" /></a></li>
+                            <li><a href="#img9"><img src="../images/star/9.png" /></a></li>
+                            <li><a href="#img10"><img src="../images/star/10.png" /></a></li>
                         </ul>
     
                     </div>
@@ -336,21 +342,21 @@ if(!isset($uname)){
         }
 
         // 自动轮播
-        var timer;
-        function autoPlay() {
-        	timer = setInterval(function() {
-        		var right;
-        		var imgLeft = imgShow.style.left;
-        		if(imgLeft === "-2000px") {
-        			right = 0;
-        		}
-        		else{
-        			right = parseInt(imgLeft) - 500;
-        		}
-        		imgShow.style.left = right + "px";
-        	} ,1000)
-        }
-        autoPlay();
+        // var timer;
+        // function autoPlay() {
+        // 	timer = setInterval(function() {
+        // 		var right;
+        // 		var imgLeft = imgShow.style.left;
+        // 		if(imgLeft === "-2000px") {
+        // 			right = 0;
+        // 		}
+        // 		else{
+        // 			right = parseInt(imgLeft) - 500;
+        // 		}
+        // 		imgShow.style.left = right + "px";
+        // 	} ,2500)
+        // }
+        // autoPlay();
 
         for (var i = 0; i < dotLen; i++) {
             /*利用闭包传递索引*/
@@ -363,4 +369,6 @@ if(!isset($uname)){
                 }
             })(i);
         }
+
+        
     </script>

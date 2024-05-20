@@ -6,7 +6,7 @@ if (isset($_SESSION["uname"])) {
     $pic = $_SESSION['pic'];
 } else {
     // echo "<script>alert('当前未登录，即将进入登陆界面');</script>";
-    // header("Location:login.php");
+    header("Location:study-time.php");
     //exit(); // 终止脚本执行
 }
 
@@ -38,6 +38,9 @@ if (!file_exists($counter_file)) {
     <link rel="icon" href="../images/icon/标记.png" sizes="32*32">
     <script src="../js/background.js"></script>
     <style type="text/css">
+        body {
+            background-image: url("../images/3.jpg");
+        }
         * {
             padding: 0%;
             /*设置内边距*/
@@ -324,7 +327,7 @@ if (!file_exists($counter_file)) {
         <div id="head">
             <!-- 头部背景图片 -->
             <div id="head-background">
-                <img src="images/<?php echo $pic;?>" onerror="this.style.display='none'"/>
+                <img src="../images/<?php echo $pic;?>" onerror="this.style.display='none'"/>
             </div>
             <!-- 导航栏 -->
             <div id="nav">

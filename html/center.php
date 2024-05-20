@@ -1,7 +1,11 @@
 <?php
 include "../php/conn.php";
+// $uname = $_SESSION['uname'];
+// $_SESSION['uname'] = $uname;
 if (isset($_SESSION["uname"])) {
     $uname = $_SESSION['uname'];
+    $pic = $_SESSION['pic'];
+    // echo $pic;
     // header("Location:center.php");
 } else {
     echo "<script>console.log('当前未登录，即将进入登陆界面');</script>";
@@ -21,6 +25,11 @@ if (isset($_SESSION["uname"])) {
     <link href="../css/center.css" type="text/css" rel="stylesheet" />
     <link rel="icon" sizes="16x16" href="../images/icon/用户.png">
     <script src="../js/background.js"></script>
+    <style>
+        body {
+            background-image: url("../images/3.jpg");
+        }
+    </style>
 </head>
 
 
@@ -36,12 +45,12 @@ if (isset($_SESSION["uname"])) {
             <img src="../images/bak2.png" alt="" class="photo1">
         </div>
         <!-- 搜索框 -->
-        <div class="search">
+        <!-- <div class="search">
             <input type="search" placeholder="Search">
             <a href="#" onclick="alert('查找失败')">
                 <i>🔍</i>
             </a>
-        </div>
+        </div> -->
 
 
         <img id="leaf" src="../images/gif.png" />
@@ -49,7 +58,7 @@ if (isset($_SESSION["uname"])) {
         <div id="head">
             <!-- 头部背景图片 -->
             <div id="head-background">
-                <img src="images/<?php echo $pic;?>" onerror="this.style.display='none'"/>
+                <img src="../images/<?php echo $pic;?>" onerror="this.style.display='none'"/>
             </div>
             <!-- 导航栏 -->
             <div id="nav">
@@ -90,7 +99,7 @@ if (isset($_SESSION["uname"])) {
                 <!-- 以下是正式内容 -->
                 
 
-            <form method="post" action="../php/center+.php" enctype="multipart/form-data">
+            <form method="post" action="../php/center+.php">
                     <!-- 下面开始表单 -->
                     <table style="margin-left: auto;
     margin-right: auto;">

@@ -43,6 +43,9 @@ $result = mysqli_query($conn,$sql);
     <link rel="icon" href="../images/icon/用户.png" sizes="32*32">
     <script src="../js/background.js"></script>
     <style>
+        body {
+            background-image: url("../images/3.jpg");
+        }
         /* 分页按钮的样式 */
 .pagination {
     margin: 20px 0;

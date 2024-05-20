@@ -2,6 +2,11 @@
     include "php/conn.php";
     if(!isset($uname)){
     // echo "<script>console.log('当前未登录');location.href='html/blog.php';</script>";
+    }else{
+        $bio = $_SESSION['bio'];
+        $uname = $_SESSION['uname'];
+        $pic = $_SESSION['pic'];
+    // echo $pic;
     }
 ?>
 <!DOCTYPE html>
@@ -22,7 +27,9 @@
         #left{
             padding-bottom: 1em;
         }
-        
+        body {
+            background-image: url("images/3.jpg");
+        }
     </style>
 </head>
 
@@ -86,8 +93,15 @@
             <!-- 中间左边 -->
             <div id="left">
                 <div id="head-background">
-                    <img id="imgspe" src="images/<?php echo $pic; ?>" onerror="this.style.display='none'" style="width=90px;height=90px;"/>
+                    <img id="imgspe" src="images/<?php echo $pic; ?>" onerror="handleImageError()" style="width=90px;height=90px;"/>
+                    <div id="error-message" style="display:none;">当前未传头像</div>
                 </div>
+                <script>
+                function handleImageError() {
+                    document.getElementById('imgspe').style.display = 'none';
+                    document.getElementById('error-message').style.display = 'block';
+                }
+                </script>
 
                 <!-- 信息这里采用php来实现 -->
                 <?php
@@ -119,7 +133,7 @@
                                 <!-- 男 -->
                             </td>
                             <td>
-                                <?php echo $row['age']."岁"; ?>
+                                <?php echo $row['age'] ? $row['age'].'岁' : "&nbsp;"; ?>
                                 <!-- 18岁 -->
                             </td>
                             <td>

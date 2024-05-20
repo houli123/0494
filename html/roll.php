@@ -23,6 +23,9 @@ if(isset($_SESSION['uname'])){
         content: '* ';
         color: red;
     }
+    body {
+            background-image: url("../images/3.jpg");
+        }
     </style>
     <script src="../js/background.js"></script>
 </head>
@@ -215,7 +218,7 @@ if(isset($_SESSION['uname'])){
                             </label>
                             </td>
                             <td>
-                                <textarea name="intro" class="input_input" placeholder="请输入个人介绍" style="min-width:280px;min-height:300px;"></textarea>
+                                <textarea name="bio" class="input_input" placeholder="请输入个人介绍" style="min-width:280px;min-height:300px;"></textarea>
                             </td>
                         </tr>
 
