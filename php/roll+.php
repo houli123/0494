@@ -13,6 +13,8 @@ $pic = $_FILES["pic"]["name"]?basename($_FILES["pic"]["name"]):"";
 // echo $pic;
 $age = $_POST['age'];
 // echo $uname, $pwd, $email, $sex;
+
+//验证表单
 if ($uname==''||$pwd==''||$email==''||$sex==''||$pwd2=='') {
     echo "<script>alert('用户名、密码、电子邮件和性别不能为空');location.href='../html/roll.php';</script>";
 }
@@ -20,7 +22,6 @@ if ($pwd !== $pwd2) {
     echo "<script>alert('两次输入的密码不相同，请重新输入');location.href='../html/roll.php';</script>";
     exit;
 }
-
 
 // 检查用户名是否已存在
 $sql = "SELECT id FROM users WHERE uname = '$uname'";
@@ -42,48 +43,25 @@ if (mysqli_num_rows($result) > 0) {
     // $_SESSION['pic']=$pic;
     // $_SESSION['age']=$age;
 
-//文件的上传
+//图片的上传
 if ($pic) {
-    $target_dir = "../images/"; 
-    $target_file = $target_dir . basename($_FILES["pic"]["name"]);
-    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-    $uploadOk = 1;
+    $save_dir = "../images/"; 
+    $save_file = $save_dir . basename($_FILES["pic"]["name"]);
+    move_uploaded_file($_FILES["pic"]["tmp_name"], $save_file);
 
-    // 检查文件是否已经存在
-    // echo $pic;
-    // echo basename($_FILES["pic"]["name"]);
-    // echo $target_file;
-    if (file_exists($target_file)) {
-        echo "<script>alert('抱歉，文件已经存在');location.href='../html/roll.php';</script>";
-        $uploadOk = 0;
-    }
-
-    // 限制允许上传的文件类型
-    if (
-        $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-        && $imageFileType != "gif"
-    ) {
-        echo "<script>alert('抱歉，只允许 JPG, JPEG, PNG & GIF 文件格式。');location.href='../html/roll.php';</script>";
-        $uploadOk = 0;
-    }
-
-    // 尝试上传文件
-    if ($uploadOk == 1 && move_uploaded_file($_FILES["pic"]["tmp_name"], $target_file)) {
+    // 检查图片是否已经存在
+    if (file_exists($save_file)) {
         // 插入新用户
-        if ($uploadOk) {
-            $sql = "INSERT INTO users (uname, pwd, phone, email, bio, sex,gra,xinzuo,pic,age) VALUES ('$uname', '$pwd', '$phone', '$email', '$bio', '$sex','$gra','$xinzuo','$pic','$age')";
-            $result = mysqli_query($conn, $sql);
-        }
+        $sql = "INSERT INTO users (uname, pwd, phone, email, bio, sex,gra,xinzuo,pic,age) VALUES ('$uname', '$pwd', '$phone', '$email', '$bio', '$sex','$gra','$xinzuo','$pic','$age')";
+        $result = mysqli_query($conn, $sql);
         echo "<script>alert('注册成功，请登录');location.href='../html/login.php';</script>";
     } else {
-        echo "<script>alert('上传文件时出现错误，请重试');location.href='../html/roll.php';</script>";
+        echo "<script>alert('上传图片时出现错误，请重试');location.href='../html/roll.php';</script>";
     }
 }else{
     $pic = '';
     // 插入新用户
-    if ($uploadOk) {
-        $sql = "INSERT INTO users (uname, pwd, phone, email, bio, sex,gra,xinzuo,pic,age) VALUES ('$uname', '$pwd', '$phone', '$email', '$bio', '$sex','$gra','$xinzuo','$pic','$age')";
-        $result = mysqli_query($conn, $sql);
-    }
+    $sql = "INSERT INTO users (uname, pwd, phone, email, bio, sex,gra,xinzuo,pic,age) VALUES ('$uname', '$pwd', '$phone', '$email', '$bio', '$sex','$gra','$xinzuo','$pic','$age')";
+    $result = mysqli_query($conn, $sql);
     echo "<script>alert('注册成功，请登录');location.href='../html/login.php';</script>";
 }

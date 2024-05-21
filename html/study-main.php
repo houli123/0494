@@ -314,12 +314,12 @@ if (!file_exists($counter_file)) {
             <img src="../images/bak2.png" alt="" class="photo1">
         </div>
         <!-- 搜索框 -->
-        <div class="search">
+        <!-- <div class="search">
             <input type="search" placeholder="Search">
             <a href="#"  onclick="alert('查找失败')">
                 <i>🔍</i>
             </a>
-        </div>
+        </div> -->
 
 
         <img id="leaf" src="../images/gif.png" />

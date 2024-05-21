@@ -1,7 +1,7 @@
 <?php
 include "conn.php";
 session_start();
-// $pwd = $_POST['pwd'] ? $_POST['pwd'] : $SESSION['pwd'];
+$pwd = $_POST['pwd'] ? $_POST['pwd'] : $SESSION['pwd'];
 $pwd2 = $_POST['pwd2'];
 // $email = $_POST['email'] ? $_POST['email'] : $SESSION['email'];
 $sex = $_POST['sex'] ? $_POST['sex'] : $SESSION['sex'];
