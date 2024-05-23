@@ -10,10 +10,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if($uname=="" || $pwd==""){
         echo "<script>alert('用户名密码不能为空');location.href='login+.php';</script>";
     }
-    // 验证用户名和密码
 
+    // 验证用户名和密码
     $sql = "SELECT * FROM users WHERE uname = '$uname'";
-    $result = $conn->query($sql);
+    $result = mysqli_query($conn,$sql);
     $row = mysqli_fetch_assoc($result);
     if ($row['pwd'] == $pwd) {
         foreach ($row as $key => $value) {

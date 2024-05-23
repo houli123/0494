@@ -47,7 +47,14 @@ if (mysqli_num_rows($result) > 0) {
 if ($pic) {
     $save_dir = "../images/"; 
     $save_file = $save_dir . basename($_FILES["pic"]["name"]);
-    move_uploaded_file($_FILES["pic"]["tmp_name"], $save_file);
+    //图片的上传
+    if (file_exists($save_file)) {
+        unlink($save_file);
+        //上传新图
+        move_uploaded_file($_FILES['pic']['tmp_name'], $save_file);
+    } else {
+        move_uploaded_file($_FILES['pic']['tmp_name'], $save_file);
+    }
 
     // 检查图片是否已经存在
     if (file_exists($save_file)) {

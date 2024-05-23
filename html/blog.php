@@ -38,10 +38,8 @@ $result = mysqli_query($conn,$sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>我的博客空间</title>
     <link href="../css/index.css" type="text/css" rel="stylesheet" />
-    <link href="../css/study-image.css" type="text/css" rel="stylesheet" />
     <link href="../css/blog.css" type="text/css" rel="stylesheet" />
     <link rel="icon" href="../images/icon/用户.png" sizes="32*32">
-    <script src="../js/background.js"></script>
     <style>
         body {
             background-image: url("../images/3.jpg");
@@ -144,7 +142,7 @@ form input[type=submit] {
 <body>
     <div id="container">
         <!-- 回到顶部箭头 -->
-        <a href="#"><img class="head" src="../images/head.png"></a>
+        <a href="#" id="go-top"><img class="head" src="../images/head.png"></a>
         <!-- 点击更换背景图片的设置 -->
   	    <div id="js">
             <img src="../images/3.jpg" alt="" class="photo1">
@@ -265,6 +263,8 @@ form input[type=submit] {
 </body>
 </html>
 
+
+<script src="../js/background.js"></script>
 <script>
   function toggleContent(button) {
     var content = button.previousElementSibling;

@@ -15,10 +15,8 @@ if (isset($uname)) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>我的个人中心</title>
     <link href="../css/index.css" type="text/css" rel="stylesheet" />
-    <link href="../css/study-image.css" type="text/css" rel="stylesheet" />
     <link href="../css/center.css" type="text/css" rel="stylesheet" />
     <link rel="icon" sizes="16x16" href="../images/icon/用户.png">
-    <script src="../js/background.js"></script>
     <style>
         body {
             background-image: url("../images/3.jpg");
@@ -30,7 +28,7 @@ if (isset($uname)) {
 <body>
     <div id="container">
         <!-- 回到顶部箭头 -->
-        <a href="#"><img class="head" src="../images/head.png"></a>
+        <a href="#" id="go-top"><img class="head" src="../images/head.png"></a>
         <!-- 点击更换背景图片的设置 -->
         <div id="js">
             <img src="../images/3.jpg" alt="" class="photo1">
@@ -145,13 +143,4 @@ if (isset($uname)) {
 
 </html>
 
-<script>
-    function adjustHeights() {
-        var left = document.getElementById('left');
-        var right = document.getElementById('right');
-        left.style.height = right.offsetHeight-20 + 'px'; // 设置#left的高度与#right相同
-    }
-
-    window.onload = adjustHeights;
-    window.onresize = adjustHeights; // 当窗口尺寸改变时再次调整高度
-</script>
+<script src="../js/background.js"></script>

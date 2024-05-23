@@ -80,17 +80,20 @@ body {
 
 /* 固定箭头设置 */
 
+#go-top {
+    display: none;
+    /*初始状态为隐藏*/
+}
+
 .head {
     /* position:fixed; 
     right:-.3%;
     top:93%;
     width: 5%;
     z-index: 999; */
-    display: none;
-    /*初始状态为隐藏*/
     position: fixed;
     right: -.3%;
-    top: 93%;
+    top: 90%;
     width: 5%;
     z-index: 999;
     cursor: pointer;

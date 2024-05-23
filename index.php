@@ -8,6 +8,10 @@
         $pic = $_SESSION['pic'];
     // echo $pic;
     }
+    // $uname = 'Jack';  //测试用
+    $sql = "SELECT * FROM users where uname='$uname'";
+    $result = mysqli_query($conn,$sql);
+    $row = mysqli_fetch_array($result);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,8 +22,6 @@
     <title>我的个人空间</title>
     <link href="css/index.css" type="text/css" rel="stylesheet" />
     <link rel="icon"  href="images/icon/爱心块状.png">
-    <script src="js/background.js" type="tex
-    t/javascript"></script>
     <style>
         #right p{
             text-indent: 0.3em;
@@ -94,35 +96,29 @@
             <div id="left">
                 <div id="head-background">
                     <img id="imgspe" src="images/<?php echo $pic; ?>" onerror="handleImageError()" style="width=90px;height=90px;"/>
-                    <div id="error-message" style="display:none;">当前未传头像</div>
+                    <div id="error-pic" style="display:none;">当前未上传头像</div>
                 </div>
                 <script>
                 function handleImageError() {
                     document.getElementById('imgspe').style.display = 'none';
-                    document.getElementById('error-message').style.display = 'block';
+                    document.getElementById('error-pic').style.display = 'block';
                 }
                 </script>
 
-                <!-- 信息这里采用php来实现 -->
-                <?php
-                // $uname = 'Jack';  //测试用
-                
-                $sql = "SELECT * FROM users where uname='$uname'";
-                $result = mysqli_query($conn,$sql);
-                $row = mysqli_fetch_array($result);
-                ?>
-
                 <!-- 姓名框 -->
                 <div id="name">
-                    <?php echo $row['uname'];?>
+                    <?php 
+                        if(isset($uname))
+                            echo $row['uname'];
+                        else
+                            echo "当前未登录";
+                    ?>
                     <!-- Jack -->
                 </div>
                 <!-- 签名框 -->
                 <div id="signature">
                     &nbsp;&nbsp;
                     <?php echo $row['bio']; ?>
-                    <!-- 我是一个又菜又爱玩电脑的少年，作为计算机专业的学生， -->
-<!-- 我热爱我的专业并为其投入巨大的热情和精力。希望大家能和我一同热爱计算机！ -->
                 </div>
                 <!-- 性别框 -->
                 <div id="sex">
@@ -207,39 +203,9 @@
         </footer>
     </div>
 
-    
 </body>
 
 </html>
 
-<script>
-    var goTopBtn = document.getElementById('go-top');
 
-window.addEventListener('scroll', function () {
-    // 当页面滚动到一定位置（例如：200px）时显示按钮，否则隐藏
-    if (window.scrollY > 200) {
-        goTopBtn.style.display = 'block';
-    } else {
-goTopBtn.style.display = 'none';
-            }
-        });
-
-// 为按钮添加点击事件，当点击时页面滚动到顶部
-goTopBtn.addEventListener('click', function () {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth' // 平滑滚动到页面顶部
-    });
-});
-
-
-
-function adjustHeights() {
-        var left = document.getElementById('left');
-        var right = document.getElementById('right');
-        left.style.height = right.offsetHeight-20 + 'px'; // 设置#left的高度与#right相同
-    }
-
-    window.onload = adjustHeights;
-    window.onresize = adjustHeights; // 当窗口尺寸改变时再次调整高度
-</script>
+<script src="js/background.js"></script>

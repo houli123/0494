@@ -1,5 +1,4 @@
-<!-- 这是login.php文件 -->
-
+<!-- 这是roll.php文件 -->
 <?php
 include "../php/conn.php";
 if(isset($_SESSION['uname'])){
@@ -15,26 +14,24 @@ if(isset($_SESSION['uname'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>我的个人中心</title>
     <link href="../css/index.css" type="text/css" rel="stylesheet" />
-    <link href="../css/study-image.css" type="text/css" rel="stylesheet" />
     <link href="../css/center.css" type="text/css" rel="stylesheet" />
     <link rel="icon" sizes="16x16" href="../images/icon/用户.png">
     <style>
-    label.xrequired:before {
-        content: '* ';
-        color: red;
-    }
-    body {
-            background-image: url("../images/3.jpg");
+        label.xrequired:before {
+            content: '* ';
+            color: red;
+        }
+        body {
+                background-image: url("../images/3.jpg");
         }
     </style>
-    <script src="../js/background.js"></script>
 </head>
 
 
 <body>
     <div id="container">
         <!-- 回到顶部箭头 -->
-        <a href="#"><img class="head" src="../images/head.png"></a>
+        <a href="#" id="go-top"><img class="head" src="../images/head.png"></a>
         <!-- 点击更换背景图片的设置 -->
         <div id="js">
             <img src="../images/3.jpg" alt="" class="photo1">
@@ -58,8 +55,8 @@ if(isset($_SESSION['uname'])){
             <!-- 导航栏 -->
             <div id="nav">
                 <ul>
-                    <li><a href="" onclick="alert('请先登录');">主页</a></li>
-                    <li><a href="" onclick="alert('请先登录');">学习空间</a></li>
+                    <li><a href="">主页</a></li>
+                    <li><a href="">学习空间</a></li>
                     <li><a href="" onclick="alert('请先登录');">相册空间</a></li>
                     <li><a href="" >博客空间</a></li>
                     <li><a href="">个人中心</a></li>
@@ -266,13 +263,5 @@ if(isset($_SESSION['uname'])){
 
 </html>
 
-<script>
-    function adjustHeights() {
-        var left = document.getElementById('left');
-        var right = document.getElementById('right');
-        left.style.height = right.offsetHeight-20 + 'px'; // 设置#left的高度与#right相同
-    }
 
-    window.onload = adjustHeights;
-    window.onresize = adjustHeights; // 当窗口尺寸改变时再次调整高度
-</script>
+<script src="../js/background.js"></script>

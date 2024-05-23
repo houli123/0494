@@ -13,144 +13,142 @@ if(!isset($uname)){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>我的相册空间</title>
     <link href="../css/index.css" type="text/css" rel="stylesheet" />
-    <link href="../css/study-image.css" type="text/css" rel="stylesheet" />
     <link href="../css/blog.css" type="text/css" rel="stylesheet" />
     <link href="../css/album.css" type="text/css" rel="stylesheet" />
     <link rel="icon" href="../images/icon/图片.png" sizes="32*32">
-    <style type="text/css">
-    body {
-        background-image: url("../images/3.jpg");
-    }
-    * {
-        margin: 0;
-        padding: 0;
-    }
-    ul {
-        list-style: none;
-    }
-    
-    a {
-        text-decoration: none;
-    }
-    
-    #contain {
-        position: relative;
-        width: 500px;
-        height: 260px;
-        margin: 20px auto;
-        overflow: hidden;
-        /*溢出隐藏：只显示一张图片*/
-    }
-    
-    #contain .parent {
-        position: absolute;
-        width: 2500px;
-        /*整个图片层长度：500*5=2500*/
-        height: 260px;
-    }
-    
-    #contain .parent li {
-        float: left;
-        width: 500px;
-        height: 100%;
-    }
-    
-    #contain .parent li img {
-        width: 100%;
-        height: 100%;
-    }
-    
-    #contain .btnLeft,
-    #contain .btnRight {
-        width: 30px;
-        height: 30px;
-        background-color: #9E9E9E;
-        border-radius: 20%;
-        opacity: 80%;
-        position: absolute;
-        /*包含块为图片显示层contain*/
-        top: 0;
-        bottom: 0;
-        margin: auto;
-        font-size: 20px;
-        color: #f40;
-        text-align: center;
-        line-height: 30px;
-    }
-    
-    #contain .btnLeft {
-        left: 10px;
-    }
-    
-    #contain .btnRight {
-        right: 10px;
-    }
-    
-    #contain .btnLeft:hover,
-    #contain .btnRight:hover {
-        opacity: 90%;
-        cursor: pointer;
-    }
-    /*蒙层*/
-    
-    #contain .modal {
-        width: 100%;
-        height: 40px;
-        background: rgba(0, 0, 0, .3);
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        line-height: 40px;
-        padding: 0 40px;
-        box-sizing: border-box;
-    }
-    
-    #contain .modal .title {
-        float: left;
-        color: #fff;
-        font-size: 12px;
-    }
-    
-    #contain .modal .dots {
-        float: right;
-        position: absolute;
-        bottom: 10px;
-        left: 340px;
-    }
-    
-    #contain .modal .dots li {
-        width: 15px;
-        height: 15px;
-        border-radius: 50%;
-        float: left;
-        /*可以使用行块盒*/
-        /*display: inline-block;*/
-        margin: 0 5px;
-        cursor: pointer;
-    }
-    
-    .clearfix::after {
-        content: "";
-        display: block;
-        clear: both;
-    }
-    
-    .on {
-        background-color: red;
-    }
-    
-    .off {
-        background-color: gray;
-    }
-</style>
-    <script src="../js/background.js"></script>
+    <style>
+        body {
+            background-image: url("../images/3.jpg");
+        }
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        ul {
+            list-style: none;
+        }
+        a {
+            text-decoration: none;
+        }
+        #contain {
+            position: relative;
+            width: 500px;
+            height: 260px;
+            margin: 20px auto;
+            overflow: hidden;
+            /*溢出隐藏：只显示一张图片*/
+        }
+
+        #contain .parent {
+            position: absolute;
+            width: 2500px;
+            /*整个图片层长度：500*5=2500*/
+            height: 260px;
+        }
+
+        #contain .parent li {
+            float: left;
+            width: 500px;
+            height: 100%;
+        }
+
+        #contain .parent li img {
+            width: 100%;
+            height: 100%;
+        }
+
+        #contain .btnLeft,
+        #contain .btnRight {
+            width: 30px;
+            height: 30px;
+            background-color: #9E9E9E;
+            border-radius: 20%;
+            opacity: 80%;
+            position: absolute;
+            /*包含块为图片显示层contain*/
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            font-size: 20px;
+            color: #f40;
+            text-align: center;
+            line-height: 30px;
+        }
+
+        #contain .btnLeft {
+            left: 10px;
+        }
+
+        #contain .btnRight {
+            right: 10px;
+        }
+
+        #contain .btnLeft:hover,
+        #contain .btnRight:hover {
+            opacity: 90%;
+            cursor: pointer;
+        }
+
+
+        /*蒙层*/
+
+        #contain .modal {
+            width: 100%;
+            height: 40px;
+            background: rgba(0, 0, 0, .3);
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            line-height: 40px;
+            padding: 0 40px;
+            box-sizing: border-box;
+        }
+
+        #contain .modal .title {
+            float: left;
+            color: #fff;
+            font-size: 12px;
+        }
+
+        #contain .modal .dots {
+            float: right;
+            position: absolute;
+            bottom: 10px;
+            left: 340px;
+        }
+
+        #contain .modal .dots li {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            float: left;
+            /*可以使用行块盒*/
+            /*display: inline-block;*/
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        .clearfix::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        .on {
+            background-color: red;
+        }
+
+        .off {
+            background-color: gray;
+        }
+    </style>
 </head>
 
 
 <body>
     <div id="container">
         <!-- 回到顶部箭头 -->
-        <a href="#"><img class="head" src="../images/head.png"></a>
+        <a href="#" id="go-top"><img class="head" src="../images/head.png"></a>
         <!-- 点击更换背景图片的设置 -->
   	    <div id="js">
             <img src="../images/3.jpg" alt="" class="photo1">
@@ -289,6 +287,9 @@ if(!isset($uname)){
     
 </body>
 </html>
+
+
+<script src="../js/background.js"></script>
 <script type="text/javascript">
         var imgShow = document.getElementsByClassName('parent')[0],
             dotList = document.querySelectorAll('.dots >.clearfix > li');

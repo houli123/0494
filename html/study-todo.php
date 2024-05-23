@@ -18,85 +18,16 @@ if (isset($_SESSION["uname"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>我的学习空间</title>
     <link href="../css/index.css" type="text/css" rel="stylesheet" />
-    <link href="../css/study-image.css" type="text/css" rel="stylesheet" />
-    <link href="../css/study.css" type="text/css" rel="stylesheet" />
-    <link href="../css/study-main.css" type="text/css" rel="stylesheet" />
+    <!-- <link href="../css/study.css" type="text/css" rel="stylesheet" /> -->
+    <link href="../css/study-todo.css" type="text/css" rel="stylesheet" />
     <link rel="icon" href="../images/icon/标记.png" sizes="32*32">
-    <script src="../js/background.js"></script>
-    <style>
-body {
-            background-image: url("../images/3.jpg");
-        }
-/* 当前任务列表盒子样式 */
-#todolistBox {
-    max-width: 500px;
-    margin: 30px auto;
-    background-color: #f0fff0;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* 标题样式 */
-#top h1 {
-    color: #38ef7d;
-    margin-bottom: 16px;
-}
-
-/* 输入框样式 */
-#top input {
-    width: 100%;
-    padding: 10px;
-    border: 2px solid #38ef7d;
-    border-radius: 4px;
-    margin-bottom: 20px;
-}
-
-/* 任务列表样式 */
-#todolist li {
-    list-style: none;
-    background-color: #e6ffe6;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-/* 任务文本样式 */
-.todoText {
-    font-size: 16px;
-}
-
-/* 按钮通用样式 */
-.todoBtn {
-    border: none;
-    padding: 6px 12px;
-    cursor: pointer;
-    border-radius: 4px;
-    margin-left: 10px;
-}
-
-/* 完成按钮样式 */
-.todoBtn.done {
-    background-color: #44b144;
-    color: white;
-}
-
-/* 删除按钮样式 */
-.todoBtn.delete {
-    background-color: #ff6868;
-    color: white;
-}
-    </style>
 </head>
 
 
 <body>
     <div id="container">
         <!-- 回到顶部箭头 -->
-        <a href="#"><img class="head" src="../images/head.png"></a>
+        <a href="#" id="go-top"><img class="head" src="../images/head.png"></a>
         <!-- 点击更换背景图片的设置 -->
   	    <div id="js">
             <img src="../images/3.jpg" alt="" class="photo1">
@@ -188,50 +119,5 @@ body {
     
 </body>
 </html>
-
-<script>
-    function adjustHeights() {
-        var left = document.getElementById('left');
-        var right = document.getElementById('right');
-        left.style.height = right.offsetHeight-20 + 'px'; // 设置#left的高度与#right相同
-    }
-    window.onload = function () {
-        // 调整高度
-            var left = document.getElementById('left');
-            var right = document.getElementById('right');
-            left.style.height = right.offsetHeight-20 + 'px'; // 设置#left的高度与#right相同
-    document.getElementById('todoInput').addEventListener('keydown', function (e) {
-        if (e.keyCode === 13 && this.value) {
-            const li = document.createElement('li');
-
-            const span = document.createElement('span');
-            span.textContent = this.value;
-            span.className = 'todoText';
-            li.appendChild(span);
-
-            const doneBtn = document.createElement('button');
-            doneBtn.innerHTML = '完成';
-            doneBtn.className = 'todoBtn done';
-            doneBtn.addEventListener('click', function () {
-                this.parentElement.style.textDecoration = 'line-through';
-            });
-            li.appendChild(doneBtn);
-
-            const deleteBtn = document.createElement('button');
-            deleteBtn.innerHTML = '删除';
-            deleteBtn.className = 'todoBtn delete';
-            deleteBtn.addEventListener('click', function () {
-                this.parentElement.remove();
-            });
-            li.appendChild(deleteBtn);
-
-            document.getElementById('todolist').appendChild(li);
-
-            this.value = '';
-            }
-    });
-};
-
-
-    window.onresize = adjustHeights; // 当窗口尺寸改变时再次调整高度
-</script>
+<script src="../js/background.js"></script>
+<script src="../js/study-todo.js"></script>
