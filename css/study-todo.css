@@ -7,7 +7,7 @@ body {
 
 #todolistBox {
     max-width: 500px;
-    margin: 30px auto;
+    margin: 50px auto;
     background-color: #f0fff0;
     padding: 20px;
     border-radius: 8px;
@@ -20,6 +20,7 @@ body {
 #top h1 {
     color: #38ef7d;
     margin-bottom: 16px;
+    font-size: 40px;
 }
 
 

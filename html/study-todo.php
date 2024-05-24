@@ -1,15 +1,3 @@
-<?php
-include "../php/conn.php";
-if (isset($_SESSION["uname"])) {
-    $uname = $_SESSION['uname'];
-    $pwd = $_SESSION['pwd'];
-    $pic = $_SESSION['pic'];
-} else {
-    // echo "<script>alert('当前未登录，即将进入登陆界面');</script>";
-    //header("Location:login.php");
-    //exit(); // 终止脚本执行
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +6,6 @@ if (isset($_SESSION["uname"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>我的学习空间</title>
     <link href="../css/index.css" type="text/css" rel="stylesheet" />
-    <!-- <link href="../css/study.css" type="text/css" rel="stylesheet" /> -->
     <link href="../css/study-todo.css" type="text/css" rel="stylesheet" />
     <link rel="icon" href="../images/icon/标记.png" sizes="32*32">
 </head>

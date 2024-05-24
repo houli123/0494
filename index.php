@@ -3,9 +3,9 @@
     if(!isset($uname)){
     // echo "<script>console.log('当前未登录');location.href='html/blog.php';</script>";
     }else{
-        $bio = $_SESSION['bio'];
-        $uname = $_SESSION['uname'];
-        $pic = $_SESSION['pic'];
+        // $bio = $_SESSION['bio'];
+        // $uname = $_SESSION['uname'];
+        // $pic = $_SESSION['pic'];
     // echo $pic;
     }
     // $uname = 'Jack';  //测试用
@@ -129,7 +129,7 @@
                                 <!-- 男 -->
                             </td>
                             <td>
-                                <?php echo $row['age'] ? $row['age'].'岁' : "&nbsp;"; ?>
+                                <?php echo $row['age'] ?$row['age'].'岁' : "&nbsp;"; ?> 
                                 <!-- 18岁 -->
                             </td>
                             <td>
@@ -157,7 +157,9 @@
                 <div class="basis">
                     <?php echo "<p id='a'>用户名：".$row['uname']."</p>"; ?>
                     <?php echo "<p id='a'>性别：" . $row['sex'] . "</p>"; ?>
-                    <?php echo "<p id='a'>年龄：" . $row['age'] . "岁</p>"; ?>
+                    <?php echo "<p id='a'>年龄：";
+                        echo $row['age'] ? $row['age'] . '岁' : "&nbsp;"; 
+                    ?> 
                     <?php echo "<p id='a'>星座：" . $row['xinzuo'] . "</p>"; ?>
                     <?php echo "<p id='a'>手机：" . $row['phone'] . "</p>"; ?>
                     <?php echo "<p id='a'>邮箱：" . $row['email'] . "</p>"; ?>

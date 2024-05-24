@@ -18,6 +18,13 @@ $age = $_POST['age'];
 if ($uname==''||$pwd==''||$email==''||$sex==''||$pwd2=='') {
     echo "<script>alert('用户名、密码、电子邮件和性别不能为空');location.href='../html/roll.php';</script>";
 }
+// 密码正则表达式，要求长度大于等于 6 个字符
+$pattern = "/^.{6,}$/";
+// 验证密码
+if (!preg_match($pattern, $pwd)) {
+    echo "<script>alert('密码长度必须大于等于 6 个字符，请重新输入');location.href='../html/roll.php';</script>";
+    exit;
+}
 if ($pwd !== $pwd2) {
     echo "<script>alert('两次输入的密码不相同，请重新输入');location.href='../html/roll.php';</script>";
     exit;

@@ -1,15 +1,3 @@
-<?php
-include "../php/conn.php";
-if (isset($_SESSION["uname"])) {
-    $uname = $_SESSION['uname'];
-    $pwd = $_SESSION['pwd'];
-    $pic = $_SESSION['pic'];
-} else {
-    // echo "<script>alert('当前未登录，即将进入登陆界面');</script>";
-    //header("Location:login.php");
-    //exit(); // 终止脚本执行
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -97,11 +85,19 @@ if (isset($_SESSION["uname"])) {
                         <br>
                         <div class="col pb-3 align-self-center" align="center">
                             <span class="btn btn-light btn-sm" id="start_button" onclick="start()" role="button">开始</span>
-                            <span id="start_stopwatch"><input class="rounded rounded-3" style="text-align: center; border: 1px solid #dddddd" size="3" value="25" id="pomodoro_minutes" name="pomodoro_length" onchange="save_checked_value()" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}">
-                                分钟</span>&nbsp;&nbsp;
+
+                            <span id="start_stopwatch">
+                                <input class="rounded rounded-3" style="text-align: center; border: 1px solid #dddddd" size="3" value="25" id="pomodoro_minutes" name="pomodoro_length" onchange="save_checked_value()" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}">
+                                分钟
+                            </span>&nbsp;&nbsp;
+
                             <span class="btn btn-light btn-sm" id="rest_button" onclick="rest()" role="button">休息</span>
-                            <span id="rest_stopwatch"><input class="rounded rounded-3" style="text-align: center; border: 1px solid #dddddd" size="3" id="rest_minutes" name="rest_length" value="5" onchange="save_checked_value()" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}">
-                                分钟</span>&nbsp;&nbsp;
+
+                            <span id="rest_stopwatch">
+                                <input class="rounded rounded-3" style="text-align: center; border: 1px solid #dddddd" size="3" id="rest_minutes" name="rest_length" value="5" onchange="save_checked_value()" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}">
+                                分钟
+                            </span>&nbsp;&nbsp;
+                            
                             <span class="btn btn-light btn-sm" onclick="end()" role="button">取消</span>
                         </div>
                         <div class="row no-gutters" id="time_percent">

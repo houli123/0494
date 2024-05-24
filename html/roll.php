@@ -55,15 +55,14 @@ if(isset($_SESSION['uname'])){
             <!-- 导航栏 -->
             <div id="nav">
                 <ul>
-                    <li><a href="">主页</a></li>
-                    <li><a href="">学习空间</a></li>
+                    <li><a href="../index.php">主页</a></li>
+                    <li><a href="study-main.php">学习空间</a></li>
                     <li><a href="" onclick="alert('请先登录');">相册空间</a></li>
-                    <li><a href="" >博客空间</a></li>
-                    <li><a href="">个人中心</a></li>
+                    <li><a href="blog.php">博客空间</a></li>
+                    <li><a href="" >个人中心</a></li>
                 </ul>
             </div>
         </div>
-
 
         <!-- 中间的一块 -->
         <div id="middle">
@@ -109,8 +108,24 @@ if(isset($_SESSION['uname'])){
                             </label>
                             </td>
                             <td>
-                                <input name="pwd" class="input_input" type="password" placeholder="请输入密码" style="min-width:200px;">
+                                <input name="pwd" class="input_input" type="password" placeholder="请输入密码" 
+                                style="min-width:200px;" onfocus="showHint()" onblur="hideHint()">
+                                <!-- 新添加的密码要求提示信息 -->
+                                <div id="Hint" style="display:none; color: #999; font-size: 14px;">
+                                    密码要求：大于等于6个字符
+                                </div>
                             </td>
+                            <script>
+                                function showHint() {
+                                // 当输入框获得焦点时显示密码提示信息
+                                document.getElementById('Hint').style.display = 'block';
+                            }
+                                function hideHint() {
+                                    // 当输入框失去焦点时隐藏密码提示信息
+                                    document.getElementById('Hint').style.display = 'none';
+                                }
+                            
+                            </script>
                         </tr>
 
                         <tr>
