@@ -1,5 +1,12 @@
 <?php
 include "conn.php";
+// 检查表单是否提交
+if ($_SERVER["REQUEST_METHOD"] != "POST") {
+    header("Location: ../html/roll.php");
+    exit;
+}
+
+// 获取用户输入
 $uname = $_POST['uname'];
 $pwd = $_POST['pwd'];
 $pwd2 = $_POST['pwd2'];

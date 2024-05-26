@@ -219,7 +219,7 @@ if(isset($_SESSION['uname'])){
                             </label>
                             </td>
                             <td>
-                                <input name="gra" class="input_input" type="password" placeholder="请输入毕业学校" style="min-width:200px;">
+                                <input name="gra" class="input_input" type="text" placeholder="请输入毕业学校" style="min-width:200px;">
                             </td>
                         </tr>
 

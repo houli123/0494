@@ -6,13 +6,14 @@ if (isset($_SESSION["uname"])) {
     $pic = $_SESSION['pic'];
 } else {
     // echo "<script>alert('当前未登录，即将进入登陆界面');</script>";
+    // 签到界面要求登录
     header("Location:study-time.php");
     //exit(); // 终止脚本执行
 }
 
+// 签到计数器的实现
 // 定义计数器文件的路径
 $counter_file = '../counter.txt';
-
 // 判断文件是否存在
 if (!file_exists($counter_file)) {
     // 如果文件不存在，创建文件并将计数器初始为1
@@ -104,15 +105,15 @@ if (!file_exists($counter_file)) {
                 
                 <div class="calendar">
                     <div class="title">
-                        <h1 class="green" id="calendar-title">Month</h1>
-                        <h2 class="green" id="calendar-year">Year</h2>
+                        <h1 class="green" id="calendar-month">月份</h1>
+                        <h2 class="green" id="calendar-year">年份</h2>
                         <a href="" id="pre" class="previous round"></a>
                         <a href="" id="next" class="next round"></a>
                     </div>
 
                     <div class="body">
                         <div class="lightgrey body-list">
-                            <!--使用无序列表标签显示星期-->
+                            <!--显示星期-->
                             <ul>
                                 <li>日</li>
                                 <li>一</li>
@@ -123,7 +124,8 @@ if (!file_exists($counter_file)) {
                                 <li>六</li>
                             </ul>
                         </div>
-                        <!--使用无序列表标签显示日期，日期使用JavaScript动态获取，然后使用innerHTML设置<ul>标签之间的HTML-->
+
+                        <!--显示日期，日期使用JavaScript动态获取，然后使用innerHTML设置<ul>标签之间的HTML-->
                         <div class="darkgrey body-list">
                             <ul id="days">
 
@@ -135,7 +137,7 @@ if (!file_exists($counter_file)) {
 
                 <!-- 签到部分 -->
             <div class="sign-content">
-                <!-- 签到时间 -->
+                <!-- 签到文本与时间 -->
                 <div class="sign-time"><span id="todays">请点击签到</span></div>
 
                 <!-- 签到按钮 -->
@@ -182,5 +184,5 @@ if (!file_exists($counter_file)) {
 </html>
 
 
-<script src="../js/background.js"></script>
 <script src="../js/study-main.js"></script>
+<script src="../js/background.js"></script>

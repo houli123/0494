@@ -1,5 +1,3 @@
-<!-- 这是login.php文件 -->
-
 <?php
 include "../php/conn.php";
 if (isset($uname)) {
@@ -8,7 +6,6 @@ if (isset($uname)) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

@@ -1,5 +1,11 @@
 <?php
 include "conn.php";
+// 检查表单是否提交
+if ($_SERVER["REQUEST_METHOD"] != "POST") {
+    header("Location: ../html/center.php");
+    exit;
+}
+
 $pic = $_FILES["pic"]["name"] ? basename($_FILES["pic"]["name"]) : $pic;
 $bio = $_POST['bio']?$_POST['bio']:$bio;
 // 设置session
@@ -23,7 +29,7 @@ if (file_exists($save_file)) {
 }
 $result = mysqli_query($conn, $sql);
 if ($result) {
-    echo "<script>alert('更改成功');location.href='../html/center2.php';</script>";
+    echo "<script>alert('其他资料更改成功');location.href='../html/center2.php';</script>";
 } else {
     echo "<script>alert('修改数据库出现错误，请重试');location.href='../html/center2.php';</script>";
 }

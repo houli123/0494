@@ -76,42 +76,68 @@
                 </div>
                 <hr>
                 
-
+                <!-- 真的时钟部分 -->
                 <div id="real-time-clock"></div>
 
+                <!-- 按钮和进度条部分 -->
                 <div align="center">
-                        <div align="center" id="timeshow" style="height: 100px"></div>
-                        <br>
-                        <br>
-                        <div class="col pb-3 align-self-center" align="center">
-                            <span class="btn btn-light btn-sm" id="start_button" onclick="start()" role="button">开始</span>
+                    <!-- 用于显示当前的倒计时 -->
+                    <div align="center" id="timeshow" style="height: 100px"></div>
+                    <br><br>
+                    <!-- 按钮部分 -->
+                    <div align="center">
+                        <!-- 开始按钮，点击时调用start()函数 -->
+                        <span class="btn btn-light btn-sm" id="start_button" onclick="start(true)">开始</span>
 
-                            <span id="start_stopwatch">
-                                <input class="rounded rounded-3" style="text-align: center; border: 1px solid #dddddd" size="3" value="25" id="pomodoro_minutes" name="pomodoro_length" onchange="save_checked_value()" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}">
-                                分钟
-                            </span>&nbsp;&nbsp;
+                        <!-- 输入番茄工作法的工作时间长度（单位：分钟） -->
+                        <span>
+                            <input
+                                style="text-align: center; border: 1px solid #dddddd" 
+                                size="3" 
+                                value="25" 
+                                id="start_minutes" 
+                                onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" 
+                                onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}">
+                            分钟
+                        </span>&nbsp;&nbsp;
+                        
+                        <!-- 休息按钮，点击时调用rest()函数 -->
+                        <span class="btn btn-light btn-sm" id="rest_button" onclick="start(false)">休息</span>
 
-                            <span class="btn btn-light btn-sm" id="rest_button" onclick="rest()" role="button">休息</span>
+                        <!-- 输入休息的时间长度（单位：分钟） -->
+                        <span>
+                            <input
+                                style="text-align: center; border: 1px solid #dddddd" 
+                                size="3" 
+                                id="rest_minutes" 
+                                value="5" 
+                                onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value.this.value.replace(/\D/g,'')}" 
+                                onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}">
+                            分钟
+                        </span>&nbsp;&nbsp;
 
-                            <span id="rest_stopwatch">
-                                <input class="rounded rounded-3" style="text-align: center; border: 1px solid #dddddd" size="3" id="rest_minutes" name="rest_length" value="5" onchange="save_checked_value()" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}">
-                                分钟
-                            </span>&nbsp;&nbsp;
-                            
-                            <span class="btn btn-light btn-sm" onclick="end()" role="button">取消</span>
-                        </div>
-                        <div class="row no-gutters" id="time_percent">
-                            <div>
-                                <div class="progress rounded-pill" style="height: 30px">
-                                    <div class="progress-bar bg-info" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;" id="pb"></div>
-                                </div>
+                        <!-- 取消按钮，点击时调用end()函数 -->
+                        <span class="btn btn-light btn-sm" onclick="end()">取消</span>
+                    </div>
+                
+                <div>
+                    <div>
+                        <!-- 进度条，显示倒计时进度 -->
+                        <div class="progress" style="height: 30px">
+                            <div class="progress-bar" 
+                                style="width: 0%;" 
+                                id="pb">
                             </div>
                         </div>
                     </div>
-
+                </div>
             </div>
-            
-        </div>
+    
+    
+    </div>
+</div>
+
+
 
 
 
@@ -123,7 +149,6 @@
 邮编：518055 电话：0755—2046337
 <br>更多信息：<a href="http://www.szpt.edu.cn" target="_blank">点击官网</a>
         </footer>
-    </div>
 
     
 </body>

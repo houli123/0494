@@ -1,33 +1,42 @@
 function updateClock() {
-    const now = new Date(); // 获取当前的日期和时间
-    let hours = now.getHours(); // 获取小时
-    let minutes = now.getMinutes(); // 获取分钟
+    // 获取当前时间
+    const now = new Date();
+    // 提取小时和分钟
+    let hours = now.getHours();
+    let minutes = now.getMinutes();
 
-    // 为了让时间始终保持两位数格式
+    // 确保小时和分钟都是两位数显示
     hours = hours < 10 ? '0' + hours : hours;
     minutes = minutes < 10 ? '0' + minutes : minutes;
 
+    // 创建时间字符串并显示在页面上
     const timeString = hours + ':' + minutes;
-
     document.getElementById('real-time-clock').textContent = timeString;
 
-    setTimeout(updateClock, 1000); // 每秒更新时间
+    // 每秒钟调用一次updateClock函数，更新显示的时间
+    setTimeout(updateClock, 1000);
 }
 
-document.addEventListener('DOMContentLoaded', updateClock); // 当页面加载完成时启动时钟
+// 当页面内容完全加载后执行updateClock函数
+document.addEventListener('DOMContentLoaded', updateClock);
 
 
 
-function updateTimeshowClass(isPomodoro) {
+// 根据是否是工作时间（isStart）改变时钟和进度条的显示样式
+function updateTimeClass(isStart) {
+    // 获取显示时间和进度条的元素
     const timeshow = document.getElementById('timeshow');
     const progressBar = document.getElementById('pb');
 
-    if (isPomodoro) {
+    // 如果是工作时间，应用特定的样式
+    if (isStart) {
         timeshow.classList.add('timeshow-start');
         timeshow.classList.remove('timeshow-end');
         progressBar.classList.add('progress-bar-ltr');
         progressBar.classList.remove('progress-bar-rtl');
-    } else {
+    }
+    // 如果不是工作时间（即休息时间），应用另一组样式
+    else {
         timeshow.classList.add('timeshow-end');
         timeshow.classList.remove('timeshow-start');
         progressBar.classList.add('progress-bar-rtl');
@@ -35,87 +44,62 @@ function updateTimeshowClass(isPomodoro) {
     }
 }
 
+// 设置一个变量来存储setInterval函数返回的值，用于之后清除计时器
+var countdown;
+// 初始化状态为工作状态
+var isStart = true;
 
-var countdownInterval;
-var isPomodoro = true;
+// 用于开始和休息的倒计时的函数
+function start(isStart) {
+    // 清除之前可能存在的计时器
+    clearInterval(countdown);
+    // 更新样式
+    updateTimeClass(isStart);
 
-function start() {
-    clearInterval(countdownInterval); // 清除任何现有的计时器
-    isPomodoro = true; // 显式设置状态为工作模式
-    updateTimeshowClass(isPomodoro); // 更新显示样式和进度条方向
-
-    var minutes = isPomodoro ? parseInt(document.getElementById('pomodoro_minutes').value) : parseInt(document.getElementById('rest_minutes').value);
+    // 根据状态选择工作时间或休息时间
+    var minutes = isStart ? parseInt(document.getElementById('start_minutes').value) : parseInt(document.getElementById('rest_minutes').value);
+    // 计算总秒数
     var seconds = minutes * 60;
 
-    // 更新时钟颜色
-    updateTimeshowClass(isPomodoro);
-    countdownInterval = setInterval(function() {
-        seconds--; // 每次调用减少一秒
+    // 启动倒计时，每一秒更新一次显示的时间
+    countdown = setInterval(function() {
+        // 每过一秒减少总秒数
+        seconds--;
+        // 计算剩余分钟和秒数
         var remainingMinutes = parseInt(seconds / 60);
         var remainingSeconds = seconds % 60;
 
-        // 格式化剩余时间字符串
+        // 确保时间是两位数表示
         remainingSeconds = remainingSeconds < 10 ? '0' + remainingSeconds : remainingSeconds;
+        // 更新显示的时间
         document.getElementById('timeshow').textContent = remainingMinutes + ":" + remainingSeconds;
 
-        // 更新进度条
+        // 每秒更新进度条宽度，进度条的比例为已过去的秒数/总秒数，如何用该比例给进度条的宽度
         var progress = ((minutes * 60 - seconds) / (minutes * 60)) * 100;
         document.getElementById('pb').style.width = progress + '%';
 
+        // 当倒计时结束时
         if (seconds <= 0) {
-            clearInterval(countdownInterval);
-            if (isPomodoro) {
-                isPomodoro = false; // 切换到休息状态
-                start(); // 自动开始休息时间
+            // 清除计时器
+            clearInterval(countdown);
+            // 根据当前状态切换到另一状态并重新启动倒计时
+            if (isStart) {
+                start(false); // 自动开始休息时间
             } else {
-                isPomodoro = true; // 切换到工作状态
+                start(true);  //自动开始学习时间
             }
         }
     }, 1000);
 }
 
-function rest() {
-    clearInterval(countdownInterval); // 清除任何现有的计时器
-    isPomodoro = false; // 显式设置状态为休息模式
-    updateTimeshowClass(isPomodoro); // 更新显示样式和进度条方向
-
-    var minutes = parseInt(document.getElementById('rest_minutes').value); // 获取休息时间长度
-    var seconds = minutes * 60;
-
-    countdownInterval = setInterval(function() {
-        seconds--; // 每秒递减
-        var remainingMinutes = parseInt(seconds / 60);
-        var remainingSeconds = seconds % 60;
-
-        // 保证时间显示始终为两位数
-        remainingSeconds = remainingSeconds < 10 ? '0' + remainingSeconds : remainingSeconds;
-        document.getElementById('timeshow').textContent = remainingMinutes + ":" + remainingSeconds; // 更新显示的时间
-
-        // 更新进度条
-        var progressPercentage = 100 - ((seconds / (minutes * 60)) * 100); // 计算剩余时间的百分比
-        document.getElementById('pb').style.width = progressPercentage + '%';
-
-        // 如果倒计时结束
-        if (seconds <= 0) {
-            clearInterval(countdownInterval); // 停止计时器
-            document.getElementById('timeshow').textContent = ""; // 可以选择清除时间显示
-            // 可以在这里添加倒计时结束后需要执行的其他操作，例如提示用户
-            alert("休息时间结束");
-        }
-    }, 1000);
-}
-
+// 用于停止倒计时的函数
 function end() {
-    clearInterval(countdownInterval); // 清除任何现有的倒计时
-    document.getElementById('timeshow').textContent = ""; // 清除显示的时间
-    document.getElementById('pb').style.width = "0%"; // 清除进度条
-    updateTimeshowClass(isPomodoro); // 更新显示样式和进度条方向
+    // 清除现有的倒计时
+    clearInterval(countdown);
+    // 清除显示的时间
+    document.getElementById('timeshow').textContent = "";
+    // 清除进度条
+    document.getElementById('pb').style.width = "0%";
+    // 更新样式
+    updateTimeClass(isStart);
 }
-
-
-// 页面加载时重置默认倒计时颜色和默认设置
-document.addEventListener('DOMContentLoaded', function() {
-    updateTimeshowClass(isPomodoro);
-    document.getElementById('pomodoro_minutes').value = '25'; // 设置默认工作时间
-    document.getElementById('rest_minutes').value = '5'; // 设置默认休息时间
-});

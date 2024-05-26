@@ -1,7 +1,5 @@
 <?php
 include "../php/conn.php";
-// $uname = $_SESSION['uname'];
-// $_SESSION['uname'] = $uname;
 if (isset($_SESSION["uname"])) {
     $uname = $_SESSION['uname'];
     $pic = $_SESSION['pic'];
@@ -120,8 +118,24 @@ if (isset($_SESSION["uname"])) {
                             </label>
                             </td>
                             <td>
-                                <input name="pwd" class="input_input" type="password" placeholder="请输入要修改的密码" style="min-width:200px;">
+                                <input name="pwd" class="input_input" type="password" placeholder="请输入密码" 
+                                style="min-width:200px;" onfocus="showHint()" onblur="hideHint()">
+                                <!-- 新添加的密码要求提示信息 -->
+                                <div id="Hint" style="display:none; color: #999; font-size: 14px;">
+                                    密码要求：大于等于6个字符
+                                </div>
                             </td>
+                            <script>
+                                function showHint() {
+                                // 当输入框获得焦点时显示密码提示信息
+                                document.getElementById('Hint').style.display = 'block';
+                            }
+                                function hideHint() {
+                                    // 当输入框失去焦点时隐藏密码提示信息
+                                    document.getElementById('Hint').style.display = 'none';
+                                }
+                            
+                            </script>
                         </tr>
 
                         <tr>
@@ -205,7 +219,7 @@ if (isset($_SESSION["uname"])) {
                             </label>
                             </td>
                             <td>
-                                <input name="gra" class="input_input" type="password" placeholder="请输入要修改的毕业学校" style="min-width:200px;">
+                                <input name="gra" class="input_input" type="text" placeholder="请输入要修改的毕业学校" style="min-width:200px;">
                             </td>
                         </tr>
                     

@@ -1,81 +1,107 @@
-#middle{
+#middle {
     background-color: white;
     display: grid;
     grid-template-columns: 1fr;
     box-shadow: 0px 0px 2px 1px white;
 }
-.blog {
-    /* width: 100%; */
-    padding: 30px 20px;
-    /* margin:0 5%; */
-    border-bottom: 2px dotted #000;
-}
-.blog .title {
-    color: black;
-    font-size: 20px;
-    font-weight: 700;
-    text-align: center;
-    padding: 10px 0;
-}
-.blog .date {
-    color: #008000;
-    margin-top: 10px;
-    text-align: center;
-}
-.blog .desc {
-    color: #000;
-    text-indent: 2em;
-    margin-top: 10px;
-}
-.blog .detail {
-    display: block;
-    width: 120px;
-    height: 40px;
-    line-height: 40px;
-    color: black;
-    text-align: center;
-    text-decoration: none;
-    margin: 10px auto 0 auto;
-    border: 2px solid black;
-    transition: all .5s;
-}
-.blog .detail:hover {
-    background-color: #000;
-    color: #fff;
+
+body {
+    background-image: url("../images/3.jpg");
 }
 
-/* 文字动画 */
-#middle{
-    overflow: hidden;
+
+/* 分页按钮的样式 */
+
+.previous-next-buttons {
+    margin: 20px 0;
 }
-.blog:nth-child(odd){
-    animation-name:odd;
-    animation-duration: 5s;
+
+.previous-next-buttons button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-right: 10px;
+    border-radius: 5px;
+    cursor: pointer;
 }
-@keyframes odd{
-    0%{
-        opacity:0;
-        margin-left: -500px;
-    }
-    100%{
-        opacity:1;
-        margin-left: 0px;
-    }
+
+.previous-next-buttons button[disabled] {
+    background-color: #CCCCCC;
+    cursor: not-allowed;
 }
-.blog:nth-child(even){
-    animation-name:even;
-    animation-duration: 5s;
+
+.blog-segment {
+    background-color: #E0F2F1;
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 10px;
 }
-@keyframes even{
-    0%{
-        opacity:0;
-        margin-right: -500px;
-    }
-    30%{
-        opacity:0;
-    }
-    100%{
-        opacity:1;
-        margin-right: 0px;
-    }
+
+.blog-title {
+    color: #00c853;
+    font-weight: bold;
+}
+
+.blog-content {
+    display: none;
+    color: #388E3C;
+}
+
+.blog- {
+    font-size: 0.8em;
+    color: #009688;
+}
+
+.read-more {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+/* 添加博客表单的样式 */
+
+form {
+    background-color: #FAFAFA;
+    padding: 20px;
+    margin: 20px auto;
+    width: 50%;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+form input[type=text],
+form textarea {
+    width: calc(100% - 24px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #BDBDBD;
+    border-radius: 4px;
+}
+
+form input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+/* 删除博客按钮的样式 */
+
+.delete-btn {
+    background-color: #FF5252;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
 }

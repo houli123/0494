@@ -13,8 +13,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "INSERT INTO blog (btitle, bcontent, uname, bdate) VALUES ('$btitle', '$bcontent', '$uname', '$bdate')";
     $result = mysqli_query($conn, $sql);
     if ($result) {
-        echo "<script>alert('新记录插入成功');location.href='../html/blog.php';</script>";
+        echo "<script>alert('博客发布成功');location.href='../html/blog.php';</script>";
     } else {
         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }
+}else{
+    header("Location: ../html/blog.php");
+    exit;
 }

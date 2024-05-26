@@ -1,12 +1,12 @@
 <?php
 include "../php/conn.php";
-// if (isset($_SESSION["uname"])) {
-//     $uname = $_SESSION['uname'];
+if (isset($_SESSION["uname"])) {
+    $uname = $_SESSION['uname'];
 //     // header("Location:center.php");
-// } else {
-//     // echo "<script>console.log('当前未登录，即将进入登陆界面');</script>";
-//     // header("Location:login.php");
-// }
+} else {
+    echo "<script>console.log('当前未登录，即将进入登陆界面');</script>";
+    header("Location:login.php");
+}
 
 ?>
 <!DOCTYPE html>
@@ -95,8 +95,7 @@ include "../php/conn.php";
 
             <form method="post" action="../php/center2+.php" enctype="multipart/form-data">
                     <!-- 下面开始表单 -->
-                    <table style="margin-left: auto;
-    margin-right: auto;">
+                    <table style="margin-left: auto; margin-right: auto;">
                         
                         <tr>
                             <td>

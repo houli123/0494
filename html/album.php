@@ -32,8 +32,8 @@ if(!isset($uname)){
         }
         #contain {
             position: relative;
-            width: 500px;
-            height: 260px;
+            width: 700px;
+            height: 400px;
             margin: 20px auto;
             overflow: hidden;
             /*溢出隐藏：只显示一张图片*/
@@ -41,14 +41,14 @@ if(!isset($uname)){
 
         #contain .parent {
             position: absolute;
-            width: 2500px;
-            /*整个图片层长度：500*5=2500*/
-            height: 260px;
+            width: 3500px;
+            /*整个图片层长度：700*5=3500*/
+            height: 400px;
         }
 
         #contain .parent li {
             float: left;
-            width: 500px;
+            width: 700px;
             height: 100%;
         }
 
@@ -114,7 +114,7 @@ if(!isset($uname)){
             float: right;
             position: absolute;
             bottom: 10px;
-            left: 340px;
+            right: 20px;
         }
 
         #contain .modal .dots li {
@@ -192,36 +192,42 @@ if(!isset($uname)){
         <!-- 中间的一块 -->
         <div id="middle">
             
-            <div id="contain">
-        <ul class="parent" style="left: 0;">
-            <?php
-            for ($i = 1; $i <= 5;$i++){
-                echo "<li><img src='../images/forest/$i.png'></li>";
-            }
-             ?>
-            <!-- <li><img src="../images/forest/1.png"></li>
-            <li><img src="../images/forest/1.png"></li>
-            <li><img src="../images/forest/1.png"></li>
-            <li><img src="../images/forest/1.png"></li> -->
-        </ul>
 
-        <div class="btnLeft">&lt;</div>
-        <div class="btnRight">&gt;</div>
-        <div class="modal">
-            <div class="title">
-                <!-- <h2>轮播图</h2> -->
-            </div>
-            <div class="dots">
-                <ul class="clearfix">
-                    <li class="on"></li>
-                    <li class="off"></li>
-                    <li class="off"></li>
-                    <li class="off"></li>
-                    <li class="off"></li>
+        <!-- 轮播图的实现 -->
+            <div id="contain">
+                <ul class="parent" style="left: 0;">
+                    <?php
+                    for ($i = 1; $i <= 5;$i++){
+                        echo "<li><img src='../images/forest/$i.png'></li>";
+                    }
+                    ?>
+                    <!-- <li><img src="../images/forest/1.png"></li>
+                    <li><img src="../images/forest/1.png"></li>
+                    <li><img src="../images/forest/1.png"></li>
+                    <li><img src="../images/forest/1.png"></li> -->
                 </ul>
+        
+                <!-- 左按钮 -->
+                <div class="btnLeft">&lt;</div>
+                <!-- 右按钮 -->
+                <div class="btnRight">&gt;</div>
+                <!-- 底部层 -->
+                <div class="modal">
+                    <div class="title">
+                        <!-- <h2>轮播图</h2> -->
+                    </div>
+                    <!-- 圆点 -->
+                    <div class="dots">
+                        <ul class="clearfix">
+                            <li class="on"></li>
+                            <li class="off"></li>
+                            <li class="off"></li>
+                            <li class="off"></li>
+                            <li class="off"></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
 
 
             <div class="photos">
@@ -290,86 +296,4 @@ if(!isset($uname)){
 
 
 <script src="../js/background.js"></script>
-<script type="text/javascript">
-        var imgShow = document.getElementsByClassName('parent')[0],
-            dotList = document.querySelectorAll('.dots >.clearfix > li');
-        var btnLeft = document.getElementsByClassName('btnLeft')[0],
-            btnRight = document.getElementsByClassName('btnRight')[0];
-        var dotLen = dotList.length,
-            index = 0; //轮播层的图片索引，0表示第一张
-
-        //圆点显示
-        function showRadius() {
-            for (var i = 0; i < dotLen; i++) {
-                if (dotList[i].className === "on") {
-                    dotList[i].className = "off";
-                }
-            }
-            dotList[index].className = "on";
-        }
-
-        //向左移动
-        btnLeft.onclick = function() {
-            index--;
-            if (index < 0) { /*第1张向左时，变为第5张*/
-                index = 4;
-            }
-            showRadius();
-            var left;
-            var imgLeft = imgShow.style.left;
-            if (imgLeft === "0px") { /*当是第1张时，每张图片左移，移4张图，位置为-(4*500)*/
-                left = -2000;
-            } else {
-                left = parseInt(imgLeft) + 500; /*由于left为负数，每左移一张加500*/
-            }
-            imgShow.style.left = left + "px";
-        }
-
-        //向右移动
-        btnRight.onclick = function() {
-            index++;
-            if (index > 4) { /*第5张向右时，变为第1张*/
-                index = 0;
-            }
-            showRadius();
-            var right;
-            var imgLeft = imgShow.style.left;
-            if (imgLeft === "-2000px") { /*当是第5张时，第1张的位置为0*/
-                right = 0;
-            } else {
-                right = parseInt(imgLeft) - 500; /*由于left为负数，每右移一张减500*/
-            }
-            imgShow.style.left = right + "px";
-        }
-
-        // 自动轮播
-        // var timer;
-        // function autoPlay() {
-        // 	timer = setInterval(function() {
-        // 		var right;
-        // 		var imgLeft = imgShow.style.left;
-        // 		if(imgLeft === "-2000px") {
-        // 			right = 0;
-        // 		}
-        // 		else{
-        // 			right = parseInt(imgLeft) - 500;
-        // 		}
-        // 		imgShow.style.left = right + "px";
-        // 	} ,2500)
-        // }
-        // autoPlay();
-
-        for (var i = 0; i < dotLen; i++) {
-            /*利用闭包传递索引*/
-            (function(i) {
-                dotList[i].onclick = function() {
-                    var dis = index - i; //当前位置和点击的距离
-                    imgShow.style.left = (parseInt(imgShow.style.left) + dis * 500) + "px";
-                    index = i; //显示当前位置的圆点
-                    showRadius();
-                }
-            })(i);
-        }
-
-        
-    </script>
+<script src="../js/album.js"></script>
