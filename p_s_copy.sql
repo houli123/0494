@@ -42,6 +42,14 @@ INSERT INTO blog (bcontent, uname, bdate, btitle) VALUES
 ('云计算为企业和开发者提供了无限的可能性和灵活性。', 'j', '2024-06-14 13:55:00', '云端建筑: 云计算的力量');
 
 
+CREATE TABLE sign (
+    sno INT AUTO_INCREMENT PRIMARY KEY, -- 自动递增的签到编号，作为主键
+    uname VARCHAR(255) NOT NULL, -- 签到人员用户名
+    stime DATETIME NOT NULL, -- 签到时间，精确到分钟
+    pic VARCHAR(255), -- 签到人员头像路径或URL
+    snum int default 1,
+    foreign key(uname) references users(uname)
+);
 
 -- 暂弃
 create table comment

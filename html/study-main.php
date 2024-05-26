@@ -133,7 +133,26 @@ if (!file_exists($counter_file)) {
                         </div>
                     </div>
                 </div>
-
+<?php
+date_default_timezone_set("Asia/Shanghai");
+$stime = date('Y-m-d H:i:s'); // 获取当前时间
+// 先尝试查询记录是否存在
+$sql = "SELECT snum FROM sign WHERE uname = '$uname'";
+$result = mysqli_query($conn, $sql);
+$snum = mysqli_num_rows($result);
+if ($snum > 0) {
+    // 如果记录存在，则snum在上一个＋1
+    $snum++;
+    $sql = "INSERT INTO sign (uname, stime, pic,snum) VALUES ('$uname', '$stime', '$pic','$snum')";
+} else {
+    // 不存在则第一个从1开始
+    $sql = "INSERT INTO sign (uname, stime, pic) VALUES ('$uname', '$stime', '$pic')";
+}
+$result = mysqli_query($conn, $sql);
+if ($result !== TRUE) {
+    echo "更新数据库记录时出错: " . mysqli_errno($conn);
+}
+?>
 
                 <!-- 签到部分 -->
             <div class="sign-content">
@@ -149,16 +168,27 @@ if (!file_exists($counter_file)) {
 
                 <!-- 签到记录 -->
                 <div class="sign-logs" style="display: none;" id="signLogs">
-                    <span>已签到<span id="signTimes"><?php echo $count ?></span>次
+                    
+                    <span>本网站已有<span id="signTimes"><?php echo $count ?></span>次签到记录
                 </div>
 
 
 
                 <!-- 签到用户 -->
-                <div class="sign-users" style="display: none;" id="signUsers">
-                    <span><img src="../images/<?php echo $pic;?>" onerror="this.style.display='none'" style="height:50px;width:50px;position:relative;top:-5px;"></span>
-                    <span><?php echo $uname;?></span>
-                    <span id="signMin"></span>
+                <?php
+                    $sql = "SELECT * FROM sign WHERE uname = '$uname' order by stime desc";
+                    $result = mysqli_query($conn, $sql);
+                    while ($row = mysqli_fetch_array($result)) {
+                        echo '<div class="sign-users" style="display: none;" id="signUsers">';
+                        echo '<span><img src="../images/' . $row['pic'] . '" onerror="this.style.display=\'none\'" style="height:50px;width:50px;position:relative;"></span>';
+                        echo '<span>' . $row['uname'] . '</span>';
+                        echo '<span id="signMin">' . $row['stime'] . '</span>'.'<p>';
+                        echo '</div>';
+                    }
+                ?>
+                    <!-- <span><img src="../images/<?php //echo $pic;?>" onerror="this.style.display='none'" style="height:50px;width:50px;position:relative;"></span>
+                    <span><?php //echo $uname;?></span>
+                    <span id="signMin"></span> -->
                 </div>
             </div>
 
@@ -184,5 +214,6 @@ if (!file_exists($counter_file)) {
 </html>
 
 
-<script src="../js/study-main.js"></script>
+
 <script src="../js/background.js"></script>
+<script src="../js/study-main.js"></script>

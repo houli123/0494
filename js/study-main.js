@@ -103,7 +103,12 @@ function sign() {
     var signgo = '已完成';
     document.getElementById('signs').innerHTML = signgo;
     document.getElementById("signLogs").style.display = "block";
-    document.getElementById('signUsers').style.display = "block";
+    var signUsers = document.querySelectorAll('#signUsers');
+    signUsers.forEach(function(item) {
+        item.style.display = "block";
+    })
+    //     x.style.display = "block";
+    // }
     // 获取签到时间
     var data = new Date();
     var year = data.getFullYear(); //获取年份
@@ -123,4 +128,5 @@ function sign() {
     var signmin = hours + mao + min; // 签到小时分钟
     document.getElementById('todays').innerHTML = signday; //更新签到日期
     document.getElementById('signMin').innerHTML = signmin; //更新签到时间
+    adjustHeights();
 }
