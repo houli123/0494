@@ -1,5 +1,5 @@
 // 用于储存平年和闰年中各个月份的天数
-var month_olypic = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]; // 闰年中12个月对应的天数
+var month_special = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]; // 闰年中12个月对应的天数
 var month_normal = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]; // 平年12个月对应的天数
 var month_name = ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"]; // 用于显示的月份名称数组
 
@@ -22,7 +22,7 @@ function dayStart(month, year) {
     return (tmpDate.getDay()); // 返回该天是星期几
 }
 
-// 同时处理平年和闰年，判断某个月有多少天
+// 求当月总天数，同时处理平年和闰年，判断某个月有多少天
 function daysMonth(month, year) {
     // 闰年判定逻辑
     var tmp1 = year % 4;
@@ -30,7 +30,7 @@ function daysMonth(month, year) {
     var tmp3 = year % 400;
 
     if ((tmp1 == 0 && tmp2 != 0) || (tmp3 == 0)) {
-        return (month_olypic[month]); // 如果是闰年返回该月天数
+        return (month_special[month]); // 如果是闰年返回该月天数
     } else {
         return (month_normal[month]); // 如果是平年返回该月天数
     }
@@ -39,9 +39,10 @@ function daysMonth(month, year) {
 // 动态更新日历显示的日期
 function refreshDate() {
     var str = ""; // 用于拼接显示所有日期的HTML字符串
+    var firstDay = dayStart(my_month, my_year); // 当月第一天是星期几
     // 获取当月总天数和第一天是星期几
     var totalDay = daysMonth(my_month, my_year); // 当月总天数
-    var firstDay = dayStart(my_month, my_year); // 当月第一天是星期几
+    
     // 先添加空白占位符到第一天位置
     for (var i = 0; i < firstDay; i++) {
         str += "<li></li>";

@@ -11,6 +11,7 @@ if (isset($_SESSION["uname"])) {
     //exit(); // 终止脚本执行
 }
 
+
 // 签到计数器的实现
 // 定义计数器文件的路径
 $counter_file = '../counter.txt';
@@ -35,6 +36,11 @@ if (!file_exists($counter_file)) {
     <link href="../css/index.css" type="text/css" rel="stylesheet" />
     <link href="../css/study-main.css" type="text/css" rel="stylesheet" />
     <link rel="icon" href="../images/icon/标记.png" sizes="32*32">
+    <style>
+        .calendar {
+            width: 530px;
+        }
+    </style>
 </head>
 
 
@@ -134,6 +140,8 @@ if (!file_exists($counter_file)) {
                     </div>
                 </div>
 
+
+
                 <!-- //插入本次的签到记录进数据库 -->
                 <?php
                 date_default_timezone_set("Asia/Shanghai");
@@ -216,9 +224,8 @@ if (!file_exists($counter_file)) {
         <footer>
             深圳职业技术大学——人工智能学院信息楼实验室<br>
             地址：广东省深圳市南山区沙河西路4089号 邮编：518055 <br/>电话：0755—2046336
-
-邮编：518055 电话：0755—2046337
-<br>更多信息：<a href="http://www.szpt.edu.cn" target="_blank">点击官网</a>
+            邮编：518055 电话：0755—2046337
+            <br>更多信息：<a href="http://www.szpt.edu.cn" target="_blank">点击官网</a>
         </footer>
     </div>
 

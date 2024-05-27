@@ -86,14 +86,13 @@
                     <br><br>
                     <!-- 按钮部分 -->
                     <div align="center">
-                        <!-- 开始按钮，点击时调用start()函数 -->
+                        <!-- 开始按钮 -->
                         <span class="btn btn-light btn-sm" id="start_button" onclick="start(true)">开始</span>
-
-                        <!-- 输入番茄工作法的工作时间长度（单位：分钟） -->
+                        <!-- 输入工作时间长度 -->
                         <span>
                             <input
                                 style="text-align: center; border: 1px solid #dddddd" 
-                                size="3" 
+                                size="5" 
                                 value="25" 
                                 id="start_minutes" 
                                 onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" 
@@ -101,14 +100,13 @@
                             分钟
                         </span>&nbsp;&nbsp;
                         
-                        <!-- 休息按钮，点击时调用rest()函数 -->
+                        <!-- 休息按钮 -->
                         <span class="btn btn-light btn-sm" id="rest_button" onclick="start(false)">休息</span>
-
-                        <!-- 输入休息的时间长度（单位：分钟） -->
+                        <!-- 输入休息的时间长度 -->
                         <span>
                             <input
                                 style="text-align: center; border: 1px solid #dddddd" 
-                                size="3" 
+                                size="5" 
                                 id="rest_minutes" 
                                 value="5" 
                                 onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value.this.value.replace(/\D/g,'')}" 
@@ -116,7 +114,7 @@
                             分钟
                         </span>&nbsp;&nbsp;
 
-                        <!-- 取消按钮，点击时调用end()函数 -->
+                        <!-- 取消按钮 -->
                         <span class="btn btn-light btn-sm" onclick="end()">取消</span>
                     </div>
                 
@@ -145,9 +143,8 @@
         <footer>
             深圳职业技术大学——人工智能学院信息楼实验室<br>
             地址：广东省深圳市南山区沙河西路4089号 邮编：518055 <br/>电话：0755—2046336
-
-邮编：518055 电话：0755—2046337
-<br>更多信息：<a href="http://www.szpt.edu.cn" target="_blank">点击官网</a>
+            邮编：518055 电话：0755—2046337
+            <br>更多信息：<a href="http://www.szpt.edu.cn" target="_blank">点击官网</a>
         </footer>
 
     

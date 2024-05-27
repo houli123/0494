@@ -83,8 +83,7 @@ if (isset($uname)) {
 
                 <form method="post" action="../php/login+.php">
                     <!-- 下面开始表单 -->
-                    <table style="margin-left: auto;
-    margin-right: auto;">
+                    <table style="margin-left: auto; margin-right: auto;">
                         <tr>
                             <td>
                                 <label class="input_label input_label1" style="top:0px;">

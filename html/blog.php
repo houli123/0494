@@ -9,6 +9,7 @@ if (isset($_GET['page']) && is_numeric($_GET['page'])) {
 
 // 每页显示的博客数量
 $limit = 3;
+//偏移量为当前页数乘以每页显示的博客数量
 $offset = $page * $limit;
 
 // 获取博客总数
@@ -16,6 +17,7 @@ $total = "SELECT COUNT(*) FROM blog";
 $result = mysqli_query($conn,$total);
 $row = mysqli_fetch_array($result);
 $total = $row[0];
+//总页数应该是总博客数除以每页显示的博客数量，然后向上取整
 $pages = ceil($total / $limit);
 
 // 查询数据库获取博客文章数据
@@ -88,6 +90,7 @@ $result = mysqli_query($conn,$sql);
             <!-- 博客的显示 -->
             <div id="blog-container">
                 <?php
+                //如果有博客内容
                 if (mysqli_num_rows($result) > 0) {
                     // 输出每行数据
                     while($row = mysqli_fetch_assoc($result)) {
@@ -152,5 +155,5 @@ $result = mysqli_query($conn,$sql);
 </html>
 
 
-<script src="../js/background.js"></script>
+<script src="../js/background2.js"></script>
 <script src="../js/blog.js"></script>

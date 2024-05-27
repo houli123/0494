@@ -2,6 +2,7 @@
 include "conn.php";
 $uname = $_SESSION['uname'];
 
+// 检查表单是否提交
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $btitle = $_POST['btitle'];
     $bcontent = $_POST['bcontent'];

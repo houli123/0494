@@ -32,7 +32,7 @@ btnLeft.onclick = function() {
     imgShow.style.left = left + "px";
 }
 
-//向右移动
+//同样的逻辑，向右移动
 btnRight.onclick = function() {
     index++;
     if (index > 4) { /*第5张向右时，变为第1张*/

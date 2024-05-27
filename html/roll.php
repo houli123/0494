@@ -86,10 +86,10 @@ if(isset($_SESSION['uname'])){
                 <hr style="opacity: unset;">
                 <!-- 以下是正式内容 -->
 
+                <!-- 下面开始表单 -->
                 <form method="post" action="../php/roll+.php" enctype="multipart/form-data">
-                    <!-- 下面开始表单 -->
-                    <table style="margin-left: auto;
-    margin-right: auto;">
+                    
+                    <table style="margin-left: auto; margin-right: auto;">
                         <tr>
                             <td>
                                 <label class="input_label input_label1 xrequired" style="top:0px;">

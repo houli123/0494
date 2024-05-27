@@ -44,6 +44,8 @@ function updateTimeClass(isStart) {
     }
 }
 
+
+
 // 设置一个变量来存储setInterval函数返回的值，用于之后清除计时器
 var countdown;
 // 初始化状态为工作状态
@@ -66,15 +68,15 @@ function start(isStart) {
         // 每过一秒减少总秒数
         seconds--;
         // 计算剩余分钟和秒数
-        var remainingMinutes = parseInt(seconds / 60);
-        var remainingSeconds = seconds % 60;
+        var remainMinutes = parseInt(seconds / 60);
+        var remainSeconds = seconds % 60;
 
         // 确保时间是两位数表示
-        remainingSeconds = remainingSeconds < 10 ? '0' + remainingSeconds : remainingSeconds;
+        remainSeconds = remainSeconds < 10 ? '0' + remainSeconds : remainSeconds;
         // 更新显示的时间
-        document.getElementById('timeshow').textContent = remainingMinutes + ":" + remainingSeconds;
+        document.getElementById('timeshow').textContent = remainMinutes + ":" + remainSeconds;
 
-        // 每秒更新进度条宽度，进度条的比例为已过去的秒数/总秒数，如何用该比例给进度条的宽度
+        // 每秒更新进度条宽度，进度条的比例为已过去的秒数/总秒数，然后用该比例给进度条的宽度
         var progress = ((minutes * 60 - seconds) / (minutes * 60)) * 100;
         document.getElementById('pb').style.width = progress + '%';
 

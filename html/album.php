@@ -283,10 +283,9 @@ if(!isset($uname)){
         <!-- 页脚 -->
         <footer>
             深圳职业技术大学——人工智能学院信息楼实验室<br>
-地址：广东省深圳市南山区沙河西路4089号 邮编：518055 <br/>电话：0755—2046336
-
-邮编：518055 电话：0755—2046337
-<br>更多信息：<a href="http://www.szpt.edu.cn" target="_blank">点击官网</a>
+            地址：广东省深圳市南山区沙河西路4089号 邮编：518055 <br/>电话：0755—2046336
+            邮编：518055 电话：0755—2046337
+            <br>更多信息：<a href="http://www.szpt.edu.cn" target="_blank">点击官网</a>
         </footer>
     </div>
 
@@ -295,5 +294,5 @@ if(!isset($uname)){
 </html>
 
 
-<script src="../js/background.js"></script>
+<script src="../js/background2.js"></script>
 <script src="../js/album.js"></script>

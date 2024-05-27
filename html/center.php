@@ -95,11 +95,10 @@ if (isset($_SESSION["uname"])) {
                 <!-- 以下是正式内容 -->
                 
 
+
+            <!-- 下面开始表单 -->
             <form method="post" action="../php/center+.php">
-                    <!-- 下面开始表单 -->
-                    <table style="margin-left: auto;
-    margin-right: auto;">
-                        
+                    <table style="margin-left: auto; margin-right: auto;">
                         <tr>
                             <td>
                                 <label class="input_label input_label1 xrequired" style="top:0px;">
@@ -228,10 +227,8 @@ if (isset($_SESSION["uname"])) {
 
 
                     <div class="box">
-
                         <input type="submit"></input>
                         <input type="reset"></input>
-
                     </div>
                 </form>
 
@@ -243,10 +240,10 @@ if (isset($_SESSION["uname"])) {
         <!-- 页脚 -->
         <footer>
             深圳职业技术大学——人工智能学院信息楼实验室<br>
-地址：广东省深圳市南山区沙河西路4089号 邮编：518055 <br/>电话：0755—2046336
+            地址：广东省深圳市南山区沙河西路4089号 邮编：518055 <br/>电话：0755—2046336
 
-邮编：518055 电话：0755—2046337
-<br>更多信息：<a href="http://www.szpt.edu.cn" target="_blank">点击官网</a>
+            邮编：518055 电话：0755—2046337
+            <br>更多信息：<a href="http://www.szpt.edu.cn" target="_blank">点击官网</a>
         </footer>
     </div>
 

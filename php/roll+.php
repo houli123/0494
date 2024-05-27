@@ -5,6 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     header("Location: ../html/roll.php");
     exit;
 }
+error_reporting(E_ALL & ~E_WARNING); //报告除警告外的所有错误
 
 // 获取用户输入
 $uname = $_POST['uname'];
@@ -35,6 +36,15 @@ if (!preg_match($pattern, $pwd)) {
 if ($pwd !== $pwd2) {
     echo "<script>alert('两次输入的密码不相同，请重新输入');location.href='../html/roll.php';</script>";
     exit;
+}
+if($phone){
+    // 电话正则表达式，要求11个数字
+    $pattern = "/^\d{11}$/";
+    // 验证电话
+    if (!preg_match($pattern, $phone)) {
+        echo "<script>alert('电话要求11个数字，请重新输入');location.href='../html/roll.php';</script>";
+        exit;
+    }
 }
 
 // 检查用户名是否已存在

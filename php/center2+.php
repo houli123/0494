@@ -5,6 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     header("Location: ../html/center.php");
     exit;
 }
+error_reporting(E_ALL & ~E_WARNING); //报告除警告外的所有错误
 
 $pic = $_FILES["pic"]["name"] ? basename($_FILES["pic"]["name"]) : $pic;
 $bio = $_POST['bio']?$_POST['bio']:$bio;
