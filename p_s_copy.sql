@@ -52,7 +52,7 @@ CREATE TABLE sign (
 );
 
 -- 暂弃
-create table comment
+--create table comment
 (
     cno int primary key AUTO_INCREMENT,
     ccontent varchar(500) not null,
@@ -62,4 +62,4 @@ create table comment
     foreign key (uname) references users(uname),
     foreign key (bno) references blog(bno)
 );
-INSERT INTO comment (ccontent, uname, bno, cdate) VALUES ('你是一个一个，对，好人', 'Jack', 1, '2024-05-11');
+--INSERT INTO comment (ccontent, uname, bno, cdate) VALUES ('你是一个一个，对，好人', 'Jack', 1, '2024-05-11');

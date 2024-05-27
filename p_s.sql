@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: 2024-05-23 10:02:02
+-- Generation Time: 2024-05-27 08:21:24
 -- 服务器版本： 5.7.17-log
 -- PHP Version: 5.6.30
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `p_s`
 --
+create database p_s;
+use p_s;
 
 -- --------------------------------------------------------
 
@@ -49,14 +51,39 @@ INSERT INTO `blog` (`bno`, `bcontent`, `uname`, `bdate`, `btitle`) VALUES
 (8, 'JavaScript的出现让网页变得 “活”起来。以前的网站只能做到展示信息，而现在，利用JavaScript，网站可以实现诸多与用户的交互，比如弹出对话框、动态改变页面内容等。JavaScript为网站带来了更加丰富的用户体验。', 'root', '2024-05-14 15:50:00', '探索动态: JavaScript的魅力'),
 (9, '响应式设计是现代Web开发中的一个重要理念。随着移动设备使用的普及，如何保证网站在任何设备上所有看起来和使用起来都完美，已经变得越来越重要。响应式设计的应用可以让网站的布局、图片、文字等元素自动适应屏幕大小，从而提供优质的用户体验。', 'root', '2024-05-01 12:05:00', '一致与自适应: 探讨响应式设计'),
 (10, '随着JavaScript生态环境的丰富，React、Vue、Angular等前端框架的兴起，为开发者提供了更加高效、便捷的开发方案，且这些框架或库还在不断地被优化和更新，预计在未来的Web开发领域中，这种趋势还会继续。', 'root', '2024-05-07 17:15:00', '框架新纪元: 现代Web开发趋势'),
-(13, '0', 'root', '2024-05-17 11:31:14', '0'),
-(14, '1', 'root', '2024-05-17 11:31:41', '11'),
-(15, '2', 'u', '2024-05-19 18:35:32', '1'),
-(16, 'Web开发日新月异，保持学习是程序员的不变真理。', 'y', '2024-06-02 09:20:00', '编码哲学: 永恒的学习之路'),
-(17, '虚拟现实正在改变我们的生活，它也正在重塑Web的未来。', 'Jack', '2024-06-05 10:30:00', '虚拟新风潮: VR对Web的影响'),
-(18, '数据科学不仅仅是一门科学，它是未来所有产品决策的基石。', 'u', '2024-06-08 11:40:00', '数据洞察: 未来的决策导向'),
-(19, '人工智能已经不再是科幻小说中的概念，它正成为现实。', 'root', '2024-06-11 12:50:00', 'AI时代: 人工智能的兴起与挑战'),
-(20, '云计算为企业和开发者提供了无限的可能性和灵活性。', 'j', '2024-06-14 13:55:00', '云端建筑: 云计算的力量');
+(16, 'Web开发日新月异，保持学习是程序员的不变真理。', 'y', '2024-05-02 09:20:00', '编码哲学: 永恒的学习之路'),
+(17, '虚拟现实正在改变我们的生活，它也正在重塑Web的未来。', 'Jack', '2024-05-05 10:30:00', '虚拟新风潮: VR对Web的影响'),
+(18, '数据科学不仅仅是一门科学，它是未来所有产品决策的基石。', 'u', '2024-05-08 11:40:00', '数据洞察: 未来的决策导向'),
+(19, '人工智能已经不再是科幻小说中的概念，它正成为现实。', 'root', '2024-05-11 12:50:00', 'AI时代: 人工智能的兴起与挑战'),
+(20, '云计算为企业和开发者提供了无限的可能性和灵活性。', 'j', '2024-05-14 13:55:00', '云端建筑: 云计算的力量');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `sign`
+--
+
+CREATE TABLE `sign` (
+  `sno` int(11) NOT NULL,
+  `uname` varchar(255) NOT NULL,
+  `stime` datetime NOT NULL,
+  `pic` varchar(255) DEFAULT NULL,
+  `snum` int(11) DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `sign`
+--
+
+INSERT INTO `sign` (`sno`, `uname`, `stime`, `pic`, `snum`) VALUES
+(57, 'root', '2024-05-27 16:20:37', '44.png', 1),
+(58, 'root', '2024-05-27 16:20:40', '44.png', 2),
+(59, 'Jack', '2024-05-27 16:20:53', 'photo.png', 1),
+(60, 'Jack', '2024-05-27 16:20:55', 'photo.png', 2),
+(61, 'Jack', '2024-05-27 16:20:57', 'photo.png', 3),
+(62, 'Jack', '2024-05-27 16:20:58', 'photo.png', 4),
+(63, 'Jack', '2024-05-27 16:20:59', 'photo.png', 5),
+(64, 'Jack', '2024-05-27 16:21:00', 'photo.png', 6);
 
 -- --------------------------------------------------------
 
@@ -84,8 +111,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `uname`, `pwd`, `phone`, `email`, `bio`, `sex`, `gra`, `xinzuo`, `pic`, `age`) VALUES
 (1, 'Jack', '123456', '13536627999', '123456789@qq.com', '我是一个又菜又爱玩电脑的少年，作为计算机专业的学生，我热爱我的专业并为其投入巨大的热情和精力。希望大家能和我一同热爱计算机！', '男', '深造小学', '双子座', 'photo.png', 18),
-(9, 'root', '123456', '', '1823003955@qq.com', '', '男', '', '', '44.png', 1),
-(21, 'u', 'u', '', '1@gmail.com', 'ss', '', '', '', '02.png', 0),
+(9, 'root', '123456', '', '1823003955@qq.com', '', '女', '4564', '白羊座', '44.png', 1),
+(21, 'u', 'u', '', '1@gmail.com', 'ss', '', '', '', '6.png', 0),
 (22, 'y', 'y', '', '1823003955@qq.com', '', '男', '', '', '', 0),
 (23, 'j', 'j', '', '1823003955@qq.com', '', '男', '', '', '', 0);
 
@@ -98,6 +125,13 @@ INSERT INTO `users` (`id`, `uname`, `pwd`, `phone`, `email`, `bio`, `sex`, `gra`
 --
 ALTER TABLE `blog`
   ADD PRIMARY KEY (`bno`),
+  ADD KEY `uname` (`uname`);
+
+--
+-- Indexes for table `sign`
+--
+ALTER TABLE `sign`
+  ADD PRIMARY KEY (`sno`),
   ADD KEY `uname` (`uname`);
 
 --
@@ -115,7 +149,12 @@ ALTER TABLE `users`
 -- 使用表AUTO_INCREMENT `blog`
 --
 ALTER TABLE `blog`
-  MODIFY `bno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `bno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+--
+-- 使用表AUTO_INCREMENT `sign`
+--
+ALTER TABLE `sign`
+  MODIFY `sno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 --
 -- 使用表AUTO_INCREMENT `users`
 --
@@ -130,6 +169,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `blog`
   ADD CONSTRAINT `blog_ibfk_1` FOREIGN KEY (`uname`) REFERENCES `users` (`uname`);
+
+--
+-- 限制表 `sign`
+--
+ALTER TABLE `sign`
+  ADD CONSTRAINT `sign_ibfk_1` FOREIGN KEY (`uname`) REFERENCES `users` (`uname`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

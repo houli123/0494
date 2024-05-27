@@ -97,7 +97,7 @@ if (!file_exists($counter_file)) {
             </div>
 
         <!-- 中间右边 -->   
-            <div id="right">
+            <div id="right" style="overflow: hidden;">
                 <div id="index">
                     学习空间&nbsp;>&nbsp;学习打卡<a name="shang"></a>
                 </div>
@@ -133,26 +133,28 @@ if (!file_exists($counter_file)) {
                         </div>
                     </div>
                 </div>
-<?php
-date_default_timezone_set("Asia/Shanghai");
-$stime = date('Y-m-d H:i:s'); // 获取当前时间
-// 先尝试查询记录是否存在
-$sql = "SELECT snum FROM sign WHERE uname = '$uname'";
-$result = mysqli_query($conn, $sql);
-$snum = mysqli_num_rows($result);
-if ($snum > 0) {
-    // 如果记录存在，则snum在上一个＋1
-    $snum++;
-    $sql = "INSERT INTO sign (uname, stime, pic,snum) VALUES ('$uname', '$stime', '$pic','$snum')";
-} else {
-    // 不存在则第一个从1开始
-    $sql = "INSERT INTO sign (uname, stime, pic) VALUES ('$uname', '$stime', '$pic')";
-}
-$result = mysqli_query($conn, $sql);
-if ($result !== TRUE) {
-    echo "更新数据库记录时出错: " . mysqli_errno($conn);
-}
-?>
+
+                <!-- //插入本次的签到记录进数据库 -->
+                <?php
+                date_default_timezone_set("Asia/Shanghai");
+                $stime = date('Y-m-d H:i:s'); // 获取当前时间
+                // 先尝试查询记录是否存在
+                $sql = "SELECT snum FROM sign WHERE uname = '$uname'";
+                $result = mysqli_query($conn, $sql);
+                $snum = mysqli_num_rows($result);
+                if ($snum > 0) {
+                    // 如果记录存在，则snum在上一个＋1
+                    $snum++;
+                    $sql = "INSERT INTO sign (uname, stime, pic,snum) VALUES ('$uname', '$stime', '$pic','$snum')";
+                } else {
+                    // 不存在则第一个从1开始
+                    $sql = "INSERT INTO sign (uname, stime, pic) VALUES ('$uname', '$stime', '$pic')";
+                }
+                $result = mysqli_query($conn, $sql);
+                if ($result !== TRUE) {
+                    echo "更新数据库记录时出错: " . mysqli_errno($conn);
+                }
+                ?>
 
                 <!-- 签到部分 -->
             <div class="sign-content">
@@ -174,15 +176,26 @@ if ($result !== TRUE) {
 
 
 
-                <!-- 签到用户 -->
+                <!-- 显示本次的签到用户的签到记录 -->
                 <?php
                     $sql = "SELECT * FROM sign WHERE uname = '$uname' order by stime desc";
                     $result = mysqli_query($conn, $sql);
                     while ($row = mysqli_fetch_array($result)) {
                         echo '<div class="sign-users" style="display: none;" id="signUsers">';
-                        echo '<span><img src="../images/' . $row['pic'] . '" onerror="this.style.display=\'none\'" style="height:50px;width:50px;position:relative;"></span>';
+                        echo '<span><img src="../images/' . $row['pic'] . '" onerror="this.style.display=\'none\'" style="height:50px;width:50px;float:left;line-height=6vh;"></span>';
                         echo '<span>' . $row['uname'] . '</span>';
-                        echo '<span id="signMin">' . $row['stime'] . '</span>'.'<p>';
+                        echo '<span id="signMin" style="
+                                float: right;
+                                font-size: 15px;
+                                line-height: 6vh;
+                                color: #555;
+                            ">第' . $row['snum'] . '次签到记录</span>';
+                        echo '<span id="signMin" style="
+                                float: right;
+                                font-size: 15px;
+                                line-height: 6vh;
+                                color: #555;
+                            ">' . $row['stime'] . '&nbsp;&nbsp;&nbsp;&nbsp;</span>'.'<p>';
                         echo '</div>';
                     }
                 ?>
@@ -215,5 +228,6 @@ if ($result !== TRUE) {
 
 
 
+</script>
 <script src="../js/background.js"></script>
 <script src="../js/study-main.js"></script>
